@@ -4,15 +4,12 @@
 > [felt-ui](https://github.com/feltjs/felt-ui) and
 > [felt-server](https://github.com/feltjs/felt-server)
 
-`Mural` is a [Svelte](https://svelte.dev/) component using
-[felt-ui](https://github.com/feltjs/felt-ui)'s design system.
-It provides a proof-of-concept demo for collaborative editing using
-[felt-server](https://github.com/feltjs/felt-server). (TODO link a demo video)
-
-Eventually we hope to make this a polished collaborative drawing tool,
-but for now it's on the backburner and exists only to demonstrate
-how felt-server can be leveraged by any web frontend, including static sites,
+`Mural` is a proof-of-concept demonstrating
+how [felt-server](https://github.com/feltjs/felt-server)
+can be leveraged by any web frontend, including static sites,
 to create collaborative experiences scoped to the people in your Felt communities.
+Eventually we hope to make this a polished production-ready tool,
+but for now it's on the backburner.
 
 deployed: [mural.felt.dev](https://mural.felt.dev/)
 
