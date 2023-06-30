@@ -32,7 +32,7 @@ export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 			pathname: '',
 			category: 'components',
 			component: Scaled,
-			related: ['Surface', 'Mural'],
+			related: ['Mural', 'Surface'],
 		},
 		{
 			name: 'Surface',
@@ -40,7 +40,7 @@ export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 			pathname: '',
 			category: 'components',
 			component: Surface,
-			related: ['Scaled', 'Mural'],
+			related: ['Mural', 'Scaled'],
 		},
 	].map((item) => {
 		item.pathname = `/library/${item.slug}`;
