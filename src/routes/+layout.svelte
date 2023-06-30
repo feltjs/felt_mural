@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-	<title>felt-template</title>
+	<title>felt-mural</title>
 </svelte:head>
 
 <svelte:body

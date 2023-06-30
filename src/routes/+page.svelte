@@ -15,7 +15,7 @@
 			><span slot="icon"
 				>{#if mreows}{mreows[0].icon}{:else}✨{/if}</span
 			><span
-				>hello, welcome to <a href="https://github.com/feltjs/felt-template">felt-template</a></span
+				>hello, welcome to <a href="https://github.com/feltjs/felt-mural">felt-mural</a></span
 			></Message
 		>
 	</section>

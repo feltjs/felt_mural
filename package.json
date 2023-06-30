@@ -1,10 +1,9 @@
 {
-  "name": "felt-template",
-  "private": true,
-  "description": "a static web app and Node library template with SvelteKit, Gro, and Felt",
+  "name": "felt-mural",
+  "description": "a Svelte component for collaborative drawing using felt-ui",
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://template.felt.dev/",
+  "homepage": "https://mural.felt.dev/",
   "engines": {
     "node": ">=18.6"
   },
