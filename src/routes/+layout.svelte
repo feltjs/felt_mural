@@ -1,8 +1,6 @@
 <script lang="ts">
 	import '@feltjs/felt-ui/style.css';
 	import '@feltjs/felt-ui/theme.css';
-	import '$routes/style.css';
-
 	import Themed from '@feltjs/felt-ui/Themed.svelte';
 	import Dialog from '@feltjs/felt-ui/Dialog.svelte';
 	import Contextmenu from '@feltjs/felt-ui/Contextmenu.svelte';
@@ -10,7 +8,8 @@
 	import ContextmenuLinkEntry from '@feltjs/felt-ui/ContextmenuLinkEntry.svelte';
 	import ContextmenuTextEntry from '@feltjs/felt-ui/ContextmenuTextEntry.svelte';
 
-	import Settings from '$lib/Settings.svelte';
+	import Nav from '$routes/Nav.svelte';
+	import Settings from '$routes/Settings.svelte';
 
 	// TODO remove this boilerplate, should just be `const contextmenu = createContextmenu();`
 	const contextmenu = createContextmenu({
@@ -22,7 +21,7 @@
 </script>
 
 <svelte:head>
-	<title>felt-template</title>
+	<title>@feltjs/felt-mural</title>
 </svelte:head>
 
 <svelte:body
@@ -36,7 +35,10 @@
 />
 
 <Themed>
-	<slot />
+	<main>
+		<Nav />
+		<slot />
+	</main>
 	<Contextmenu {contextmenu} />
 	{#if showSettings}
 		<Dialog on:close={() => (showSettings = false)}>
@@ -46,3 +48,12 @@
 		</Dialog>
 	{/if}
 </Themed>
+
+<style>
+	main {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+</style>

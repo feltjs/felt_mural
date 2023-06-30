@@ -1,35 +1,36 @@
 <script lang="ts">
-	import Message from '@feltjs/felt-ui/Message.svelte';
+	import {base} from '$app/paths';
 
-	import Mreows from '$lib/Mreows.svelte';
-
-	let mreows: Array<{icon: string}> | undefined;
+	import Description from '$routes/Description.svelte';
+	import FeltFooter from '$routes/FeltFooter.svelte';
 </script>
 
-<main class="prose">
-	<section>
-		<header class="box row">
-			<h1>felt<small><a href="https://github.com/feltjs">💚</a></small>template</h1>
-		</header>
-		<Message
-			><span slot="icon"
-				>{#if mreows}{mreows[0].icon}{:else}✨{/if}</span
-			><span
-				>hello, welcome to <a href="https://github.com/feltjs/felt-template">felt-template</a></span
-			></Message
-		>
+<!-- <h1>@feltjs/felt-ui</h1> -->
+<!-- TODO publish and link the above to npm -->
+
+<div class="width_md">
+	<section class="panel">
+		<Description />
 	</section>
-	<Mreows bind:mreows />
-</main>
+	<section>
+		<a class="library-link panel" href="{base}/library">library</a>
+	</section>
+	<section>
+		<FeltFooter />
+	</section>
+</div>
 
 <style>
-	main {
+	section {
+		padding: var(--spacing_xl2);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 0 auto;
 	}
-	h1 {
-		text-align: center;
+	a.panel {
+		padding: var(--spacing_xl2);
+	}
+	.library-link {
+		font-size: var(--size_xl3);
 	}
 </style>

@@ -1,0 +1,245 @@
+<script lang="ts">
+	import type {Writable} from 'svelte/store';
+	import {createEventDispatcher} from 'svelte';
+	import {round} from '@feltjs/util/maths.js';
+
+	import {
+		type SvgEntity,
+		DEFAULT_POLYLINE_STROKE_WIDTH,
+		DEFAULT_POLYLINE_FILL,
+		DEFAULT_POLYLINE_FILL_2,
+		type MuralAction,
+		toPointsData,
+	} from '$lib/entity';
+
+	export let entity: Writable<SvgEntity>;
+	export let entitySelection: Writable<Writable<SvgEntity> | null>;
+
+	$: selected = $entitySelection === entity;
+
+	const dispatch = createEventDispatcher<{action: MuralAction}>();
+
+	$: ({enableFill, fill, hidden, opacity} = $entity);
+	$: finalFill = enableFill ? fill ?? DEFAULT_POLYLINE_FILL : undefined;
+	$: finalOpacity = opacity ?? 1;
+
+	// TOD clean up the copypasta below
+
+	// TODO navigate with arrow keys
+</script>
+
+<li
+	class="mural-entity-list-item selectable"
+	class:hidden
+	class:selected
+	aria-hidden
+	on:click={() => ($entitySelection = entity)}
+>
+	<button
+		class="icon_button plain"
+		class:selected={hidden}
+		on:click={() =>
+			dispatch('action', {
+				type: 'updateEntity',
+				id: $entity.id,
+				data: {hidden: !$entity.hidden},
+			})}
+		>{#if hidden}•{:else}👁{/if}</button
+	>
+	<div class="type">{$entity.type}</div>
+	<label>
+		<input
+			class="entity-input"
+			type="range"
+			min={0}
+			max={1}
+			step={0.01}
+			value={finalOpacity}
+			on:input={(e) =>
+				dispatch('action', {
+					type: 'updateEntity',
+					id: $entity.id,
+					data: {opacity: Number(e.currentTarget.value)},
+				})}
+			title="modify the {$entity.type}'s opacity"
+		/>
+		<small>opacity: {round(finalOpacity, 2)}</small>
+	</label>
+	<!-- TODO `pathLength` input (maybe a range?) -->
+	{#if $entity.type === 'circle'}
+		<label title="modify the {$entity.type}'s x position">
+			<input
+				class="entity-input"
+				type="number"
+				value={$entity.cx}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'updateEntity',
+						id: $entity.id,
+						data: {cx: Number(e.currentTarget.value)},
+					})}
+			/>
+			<small>x</small>
+		</label>
+		<label title="modify the {$entity.type}'s y position">
+			<input
+				class="entity-input"
+				type="number"
+				value={$entity.cy}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'updateEntity',
+						id: $entity.id,
+						data: {cy: Number(e.currentTarget.value)},
+					})}
+			/>
+			<small>y</small>
+		</label>
+		<label title="modify the {$entity.type}'s radius">
+			<input
+				class="entity-input"
+				type="number"
+				value={$entity.r}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'updateEntity',
+						id: $entity.id,
+						data: {r: Number(e.currentTarget.value)},
+					})}
+			/>
+			<small>radius</small>
+		</label>
+		<div style:flex="1" />
+		<div class="togglable">
+			<div class="togglable-checkbox-wrapper">
+				<input
+					type="checkbox"
+					checked={enableFill}
+					on:input={(e) =>
+						dispatch('action', {
+							type: 'updateEntity',
+							id: $entity.id,
+							data: {enableFill: e.currentTarget.checked},
+						})}
+					title="the {$entity.type}'s fill is {$entity.enableFill ? 'enabled' : 'disabled'}"
+				/>
+			</div>
+			<label>
+				<input
+					class="entity-input"
+					type="color"
+					disabled={!enableFill}
+					value={finalFill === 'none' ? '#000000' : finalFill}
+					on:input={(e) =>
+						dispatch('action', {
+							type: 'updateEntity',
+							id: $entity.id,
+							data: {fill: e.currentTarget.value},
+						})}
+				/>
+				<small
+					>{#if !enableFill || finalFill === 'none'}no {/if}fill</small
+				>
+			</label>
+		</div>
+	{:else if $entity.type === 'polyline'}
+		<label>
+			<input
+				class="entity-input"
+				type="number"
+				value={$entity.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'updateEntity',
+						id: $entity.id,
+						data: {strokeWidth: Number(e.currentTarget.value)},
+					})}
+			/>
+			<small>stroke-width</small>
+		</label>
+		<span class="content">
+			{toPointsData($entity).length}
+			<br />
+			<small>points</small>
+		</span>
+		<div class="togglable">
+			<div class="togglable-checkbox-wrapper">
+				<input
+					type="checkbox"
+					checked={enableFill}
+					on:input={(e) =>
+						dispatch('action', {
+							type: 'updateEntity',
+							id: $entity.id,
+							data: {
+								enableFill: e.currentTarget.checked,
+								fill: fill ?? (e.currentTarget.checked ? DEFAULT_POLYLINE_FILL_2 : undefined),
+							},
+						})}
+					title="the {$entity.type}'s fill is {$entity.enableFill ? 'enabled' : 'disabled'}"
+				/>
+			</div>
+			<label title="modify the {$entity.type}'s fill color">
+				<input
+					class="entity-input"
+					type="color"
+					disabled={!enableFill}
+					value={finalFill === 'none' ? '#000000' : finalFill}
+					on:input={(e) =>
+						dispatch('action', {
+							type: 'updateEntity',
+							id: $entity.id,
+							data: {fill: e.currentTarget.value},
+						})}
+				/>
+				<small
+					>{#if !enableFill || finalFill === 'none'}no {/if}fill</small
+				>
+			</label>
+		</div>
+	{/if}
+	<button
+		class="icon_button plain"
+		on:click={() => dispatch('action', {type: 'removeEntity', id: $entity.id})}>🗙</button
+	>
+</li>
+
+<style>
+	.mural-entity-list-item {
+		border-radius: var(--border_radius);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.hidden {
+		opacity: var(--faded_2);
+	}
+	.type {
+		width: 8rem;
+	}
+	.entity-input {
+		width: 8rem;
+		min-width: 8rem;
+	}
+	.content {
+		padding: 0 var(--spacing_md);
+		flex: 1;
+	}
+	.togglable {
+		padding: 0 var(--spacing_md);
+		display: flex;
+	}
+	/* TODO play with different checkbox characters ⦿•● */
+	.togglable input[type='checkbox'] {
+		--content: '•';
+	}
+	.togglable-checkbox-wrapper {
+		height: var(--input_height);
+		display: flex;
+		align-items: center;
+	}
+	label {
+		padding-bottom: var(--spacing_xs);
+	}
+</style>
