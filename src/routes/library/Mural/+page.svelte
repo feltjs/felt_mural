@@ -47,13 +47,6 @@
 
 <LibraryItem name={LIBRARY_ITEM_NAME}>
 	<div class="box width_full" style:--mural_bg={mural_bg}>
-		<div class="prose width_sm">
-			<aside>
-				The <LibraryVocab name="Mural" /> is currently a proof of concept, and in the future it will
-				be extracted into a standalone library.
-			</aside>
-		</div>
-		<br />
 		<Mural bind:entities {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
 		<section>
 			<CodeExample
