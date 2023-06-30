@@ -6,7 +6,6 @@
 	import Mural from '$lib/Mural.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library/LibraryItem.svelte';
-	import LibraryVocab from '../LibraryVocab.svelte';
 
 	// TODO fix responsive width
 
