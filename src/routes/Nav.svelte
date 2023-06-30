@@ -13,7 +13,7 @@
 <nav class:root>
 	<Breadcrumbs>
 		{#if root}
-			<span>felt-ui</span>
+			<span>@feltjs/felt-mural</span>
 		{:else}
 			<span class="heart">💚</span>
 		{/if}

@@ -8,6 +8,7 @@
 	import {libraryItemsByName, libraryItems} from '$routes/library/items';
 	import FeltFooter from '$routes/FeltFooter.svelte';
 	import LibraryPanel from '$routes/library/LibraryPanel.svelte';
+	import Description from '$routes/Description.svelte';
 
 	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);
 	$: itemsRelatedToSelected = selectedItem?.related?.map((r) => libraryItemsByName.get(r)!);
@@ -28,21 +29,7 @@
 		</div>
 	</div>
 	<LibraryPanel>
-		<div class="prose box">
-			<blockquote>
-				styles and UI components for <a href="https://svelte.dev/">Svelte</a>
-				and <a href="https://kit.svelte.dev/">SvelteKit</a>
-			</blockquote>
-			<blockquote class="box">
-				<code
-					>npm i -D <a href="https://www.npmjs.com/package/@feltjs/felt-ui">@feltjs/felt-ui</a
-					></code
-				>
-			</blockquote>
-			<blockquote class="box">
-				<a href="https://github.com/feltjs/felt-ui">github.com/feltjs/felt-ui</a>
-			</blockquote>
-		</div>
+		<Description />
 	</LibraryPanel>
 	<slot />
 	<section class="box">

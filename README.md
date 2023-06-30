@@ -1,6 +1,6 @@
 # @feltjs/felt-mural
 
-> a Svelte component for collaborative drawing using
+> a proof-of-concept Svelte component for collaborative drawing using
 > [felt-ui](https://github.com/feltjs/felt-ui)
 
 `Mural` is a [Svelte](https://svelte.dev/) component using
@@ -25,7 +25,8 @@ npm i -D @feltjs/felt-mural
 import {Mural} from '@feltjs/felt-mural';
 ```
 
-See [the library](https://mural.felt.dev/library) for early docs and demos.
+See [the library](https://mural.felt.dev/library) for early docs and demos,
+and [`src/lib/index.ts`](src/lib/index.ts) for the full exports.
 
 ## build
 
@@ -44,10 +45,6 @@ gro test
 gro test filepattern1 filepatternB
 gro test -- uvu --forwarded_args 'to uvu'
 ```
-
-See [uvu](https://github.com/lukeed/uvu),
-[`src/lib/example.test.ts`](src/lib/example.test.ts),
-and [Gro's test docs](https://github.com/feltjs/gro/blob/main/src/docs/test.md) for more.
 
 ## deploy
 

@@ -1,6 +1,6 @@
 {
   "name": "felt-mural",
-  "description": "a Svelte component for collaborative drawing using felt-ui",
+  "description": "a proof-of-concept Svelte component for collaborative drawing using felt-ui",
   "version": "0.0.1",
   "type": "module",
   "homepage": "https://mural.felt.dev/",

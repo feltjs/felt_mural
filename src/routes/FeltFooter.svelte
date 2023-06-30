@@ -1,11 +1,11 @@
+<script lang="ts">
+	import GithubLogo from '$routes/GithubLogo.svelte';
+</script>
+
 <footer {...$$restProps} class="prose panel padded_lg">
-	<slot>💚</slot>
-	<p>
-		<a href="https://github.com/feltjs/felt-ui" rel="me"> github.com/feltjs/felt-ui </a>
-	</p>
-	<p>
-		<a href="https://www.felt.dev/">felt.dev</a>
-	</p>
+	<a href="https://www.felt.dev/">felt.dev</a>
+	<br />
+	<a href="https://github.com/feltjs/felt-mural" rel="me"><GithubLogo /></a>
 </footer>
 
 <style>

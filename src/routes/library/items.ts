@@ -19,6 +19,14 @@ export type MenuItemWithComponent = MenuItem & {component: ComponentType};
 export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 	[
 		{
+			name: 'Mural',
+			slug: 'Mural',
+			pathname: '',
+			category: 'components',
+			component: Mural,
+			related: ['Surface', 'Scaled'],
+		},
+		{
 			name: 'Scaled',
 			slug: 'Scaled',
 			pathname: '',
@@ -33,14 +41,6 @@ export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 			category: 'components',
 			component: Surface,
 			related: ['Scaled', 'Mural'],
-		},
-		{
-			name: 'Mural',
-			slug: 'Mural',
-			pathname: '',
-			category: 'components',
-			component: Mural,
-			related: ['Surface', 'Scaled'],
 		},
 	].map((item) => {
 		item.pathname = `/library/${item.slug}`;
