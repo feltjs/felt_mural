@@ -1,7 +1,8 @@
 # @feltjs/felt-mural
 
 > a proof-of-concept Svelte component for collaborative drawing using
-> [felt-ui](https://github.com/feltjs/felt-ui)
+> [felt-ui](https://github.com/feltjs/felt-ui) and
+> [felt-server](https://github.com/feltjs/felt-server)
 
 `Mural` is a [Svelte](https://svelte.dev/) component using
 [felt-ui](https://github.com/feltjs/felt-ui)'s design system.
