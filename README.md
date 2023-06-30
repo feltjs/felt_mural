@@ -10,7 +10,8 @@ It provides a proof-of-concept demo for collaborative editing using
 
 Longer term, we hope to make this a polished collaborative drawing tool,
 but for now it's on the backburner and exists only to demonstrate
-how felt-server can be leveraged by any web frontend, including static sites.
+how felt-server can be leveraged by any web frontend, including static sites,
+to create collaborative experiences scoped to the people in your Felt communities.
 
 deployed: [mural.felt.dev](https://mural.felt.dev/)
 
