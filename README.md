@@ -11,6 +11,8 @@ to create collaborative experiences scoped to the people in your Felt communitie
 Eventually we hope to make this a polished production-ready tool,
 but for now it's on the backburner.
 
+TODO: include a video demo
+
 deployed: [mural.felt.dev](https://mural.felt.dev/)
 
 ## usage
