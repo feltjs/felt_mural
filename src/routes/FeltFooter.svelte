@@ -1,19 +1,10 @@
-<script lang="ts">
-	import GithubLogo from '$lib/GithubLogo.svelte';
-</script>
-
 <footer {...$$restProps} class="prose panel padded_lg">
 	<slot>💚</slot>
-	<div class="social">
-		<a href="https://github.com/feltjs/felt-ui" rel="me">
-			<GithubLogo />
-		</a>
-	</div>
 	<p>
-		<a href="https://www.felt.dev/">felt.dev</a>
+		<a href="https://github.com/feltjs/felt-ui" rel="me"> github.com/feltjs/felt-ui </a>
 	</p>
 	<p>
-		<a href="mailto:team@felt.social">team@felt.social</a>
+		<a href="https://www.felt.dev/">felt.dev</a>
 	</p>
 </footer>
 
@@ -23,10 +14,6 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-	}
-	.social {
-		display: flex;
-		margin-bottom: var(--spacing_md);
 	}
 	.social a {
 		--border_width: var(--border_width_4);

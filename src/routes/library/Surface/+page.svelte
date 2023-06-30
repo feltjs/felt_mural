@@ -5,7 +5,7 @@
 	import {createCircle, updateEntityData, type SvgEntity} from '$lib/entity';
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import WhiteboardEntity from '$lib/WhiteboardEntity.svelte';
+	import MuralEntity from '$lib/MuralEntity.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library//LibraryItem.svelte';
 
@@ -82,7 +82,7 @@
 					{#if pointerX !== undefined && pointerY !== undefined}
 						<svg>
 							{#each entities as entity (entity)}
-								<WhiteboardEntity {entity} />
+								<MuralEntity {entity} />
 							{/each}
 						</svg>
 					{/if}

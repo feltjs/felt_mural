@@ -1,7 +1,7 @@
 import type {ComponentType} from 'svelte';
 
 import Surface from '$routes/library/Surface/+page.svelte';
-import Whiteboard from '$routes/library/Whiteboard/+page.svelte';
+import Mural from '$routes/library/Mural/+page.svelte';
 import Scaled from '$routes/library/Scaled/+page.svelte';
 
 // TODO dynamic import
@@ -24,7 +24,7 @@ export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 			pathname: '',
 			category: 'components',
 			component: Scaled,
-			related: ['Surface', 'Whiteboard'],
+			related: ['Surface', 'Mural'],
 		},
 		{
 			name: 'Surface',
@@ -32,14 +32,14 @@ export const libraryItemsByName: Map<string, MenuItemWithComponent> = new Map(
 			pathname: '',
 			category: 'components',
 			component: Surface,
-			related: ['Scaled', 'Whiteboard'],
+			related: ['Scaled', 'Mural'],
 		},
 		{
-			name: 'Whiteboard',
-			slug: 'Whiteboard',
+			name: 'Mural',
+			slug: 'Mural',
 			pathname: '',
 			category: 'components',
-			component: Whiteboard,
+			component: Mural,
 			related: ['Surface', 'Scaled'],
 		},
 	].map((item) => {

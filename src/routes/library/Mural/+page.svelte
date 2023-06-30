@@ -3,14 +3,14 @@
 	import {round} from '@feltjs/util/maths.js';
 
 	import {createCircle, type SvgEntity} from '$lib/entity';
-	import Whiteboard from '$lib/Whiteboard.svelte';
+	import Mural from '$lib/Mural.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library/LibraryItem.svelte';
 	import LibraryVocab from '../LibraryVocab.svelte';
 
 	// TODO fix responsive width
 
-	const LIBRARY_ITEM_NAME = 'Whiteboard';
+	const LIBRARY_ITEM_NAME = 'Mural';
 
 	// user options
 	const WIDTH = 750;
@@ -18,7 +18,7 @@
 	const WHITEBOARD_BG = '#ffffff';
 	let width = WIDTH;
 	let height = HEIGHT;
-	let whiteboard_bg = WHITEBOARD_BG;
+	let mural_bg = WHITEBOARD_BG;
 
 	// surface props
 	let scale: number; // computed from the layout
@@ -36,7 +36,7 @@
 		// reset user options
 		width = WIDTH;
 		height = HEIGHT;
-		whiteboard_bg = WHITEBOARD_BG;
+		mural_bg = WHITEBOARD_BG;
 	};
 
 	let entities: Array<Writable<SvgEntity>> = [
@@ -46,26 +46,18 @@
 </script>
 
 <LibraryItem name={LIBRARY_ITEM_NAME}>
-	<div class="box width_full" style:--whiteboard_bg={whiteboard_bg}>
+	<div class="box width_full" style:--mural_bg={mural_bg}>
 		<div class="prose width_sm">
 			<aside>
-				The <LibraryVocab name="Whiteboard" /> is currently a proof of concept, and in the future it
-				will be extracted into a standalone library.
+				The <LibraryVocab name="Mural" /> is currently a proof of concept, and in the future it will
+				be extracted into a standalone library.
 			</aside>
 		</div>
 		<br />
-		<Whiteboard
-			bind:entities
-			{width}
-			{height}
-			bind:scale
-			bind:pointerDown
-			bind:pointerX
-			bind:pointerY
-		/>
+		<Mural bind:entities {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
 		<section>
 			<CodeExample
-				code={`<Whiteboard
+				code={`<Mural
 	width="${width}px"
 	height="${height}px"
 	scale={${scale && round(scale, 3)}}
@@ -73,18 +65,18 @@
 	pointerY={${pointerY && round(pointerY, 1)}}
 	pointerDown={${pointerDown}}
 >
-	<WhiteboardEntityList
+	<MuralEntityList
 		entities={[ ... ]}
 	/>
-</Whiteboard>`}
+</Mural>`}
 			/>
 		</section>
 		<section class="markup">
 			<form>
 				<fieldset>
 					<label>
-						<div class="title"><code>--whiteboard_bg</code></div>
-						<input type="color" bind:value={whiteboard_bg} />
+						<div class="title"><code>--mural_bg</code></div>
+						<input type="color" bind:value={mural_bg} />
 					</label>
 					<label>
 						<div class="title">width <code>{round(width, 1)}px</code></div>
@@ -102,7 +94,7 @@
 							pointerY === undefined &&
 							width === WIDTH &&
 							height === HEIGHT &&
-							whiteboard_bg === WHITEBOARD_BG}>reset settings</button
+							mural_bg === WHITEBOARD_BG}>reset settings</button
 					>
 				</fieldset>
 			</form>

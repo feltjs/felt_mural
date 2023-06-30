@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {page} from '$app/stores';
-	import Breadcrumbs from '$lib/Breadcrumbs.svelte';
+	import Breadcrumbs from '@feltjs/felt-ui/Breadcrumbs.svelte';
 
 	// TODO rename? `PageNav`? `SiteNav`? `Breadcrumbs`?
 

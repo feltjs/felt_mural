@@ -8,7 +8,7 @@
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		DEFAULT_POLYLINE_FILL,
 		DEFAULT_POLYLINE_FILL_2,
-		type WhiteboardAction,
+		type MuralAction,
 		toPointsData,
 	} from '$lib/entity';
 
@@ -17,7 +17,7 @@
 
 	$: selected = $entitySelection === entity;
 
-	const dispatch = createEventDispatcher<{action: WhiteboardAction}>();
+	const dispatch = createEventDispatcher<{action: MuralAction}>();
 
 	$: ({enableFill, fill, hidden, opacity} = $entity);
 	$: finalFill = enableFill ? fill ?? DEFAULT_POLYLINE_FILL : undefined;
@@ -29,7 +29,7 @@
 </script>
 
 <li
-	class="whiteboard-entity-list-item selectable"
+	class="mural-entity-list-item selectable"
 	class:hidden
 	class:selected
 	aria-hidden
@@ -205,7 +205,7 @@
 </li>
 
 <style>
-	.whiteboard-entity-list-item {
+	.mural-entity-list-item {
 		border-radius: var(--border_radius);
 		display: flex;
 		flex-wrap: wrap;

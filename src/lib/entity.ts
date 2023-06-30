@@ -126,25 +126,25 @@ export const updateEntityData = (entity: Writable<SvgEntity>, partial: UpdateEnt
 		return updated;
 	});
 
-// TODO where do these belong? should they be more generic than `Whiteboard`?
-export type WhiteboardAction = AddEntity | UpdateEntity | RemoveEntity | RemoveAllEntities;
-export interface WhiteboardBaseAction {
+// TODO where do these belong? should they be more generic than `Mural`?
+export type MuralAction = AddEntity | UpdateEntity | RemoveEntity | RemoveAllEntities;
+export interface MuralBaseAction {
 	type: string;
 }
-export interface AddEntity extends WhiteboardBaseAction {
+export interface AddEntity extends MuralBaseAction {
 	type: 'addEntity';
 	entity: SvgEntity;
 }
-export interface UpdateEntity extends WhiteboardBaseAction {
+export interface UpdateEntity extends MuralBaseAction {
 	type: 'updateEntity';
 	id: EntityId;
 	data: UpdateEntityData;
 }
-export interface RemoveEntity extends WhiteboardBaseAction {
+export interface RemoveEntity extends MuralBaseAction {
 	type: 'removeEntity';
 	id: EntityId;
 }
-export interface RemoveAllEntities extends WhiteboardBaseAction {
+export interface RemoveAllEntities extends MuralBaseAction {
 	type: 'removeAllEntities';
 }
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import '$lib/style.css';
-	import '$lib/theme.css';
+	import '@feltjs/felt-ui/style.css';
+	import '@feltjs/felt-ui/theme.css';
+	import Themed from '@feltjs/felt-ui/Themed.svelte';
+
 	import Nav from '$routes/Nav.svelte';
-	import Themed from '$lib/Themed.svelte';
 </script>
 
 <svelte:head>

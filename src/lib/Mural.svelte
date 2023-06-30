@@ -4,8 +4,8 @@
 
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import WhiteboardEntity from '$lib/WhiteboardEntity.svelte';
-	import WhiteboardEntityList from '$lib/WhiteboardEntityList.svelte';
+	import MuralEntity from '$lib/MuralEntity.svelte';
+	import MuralEntityList from '$lib/MuralEntityList.svelte';
 	import {
 		createCircle,
 		createPolyline,
@@ -16,10 +16,10 @@
 		updateEntityData,
 		type EntityId,
 		type SvgEntity,
-		type WhiteboardAction,
+		type MuralAction,
 	} from '$lib/entity';
 
-	const dispatch = createEventDispatcher<{action: WhiteboardAction}>();
+	const dispatch = createEventDispatcher<{action: MuralAction}>();
 
 	export let entities: Array<Writable<SvgEntity>> = [];
 	export let width: number;
@@ -66,7 +66,7 @@
 
 	const entitiesById = new Map<string, Writable<SvgEntity>>();
 
-	export const handleAction = (action: WhiteboardAction): void => {
+	export const handleAction = (action: MuralAction): void => {
 		switch (action.type) {
 			case 'addEntity': {
 				const entity = writable(action.entity);
@@ -95,12 +95,12 @@
 		}
 	};
 
-	const act = (action: WhiteboardAction): any => {
+	const act = (action: MuralAction): any => {
 		dispatch('action', action);
 		handleAction(action);
 	};
 
-	// TODO where does this belog? might need to add `whiteboard.ts`
+	// TODO where does this belog? might need to add `mural.ts`
 	type BrushType = 'pen' | 'polyline' | 'circle';
 
 	// other options
@@ -156,12 +156,7 @@
 		$selectedEntity?.type === 'polyline' ? toPointsData($selectedEntity) : undefined;
 </script>
 
-<div
-	class="whiteboard"
-	class:active={pointerDown}
-	style:--width="{width}px"
-	style:--height="{height}px"
->
+<div class="mural" class:active={pointerDown} style:--width="{width}px" style:--height="{height}px">
 	<div class="content">
 		<Scaled {width} {height} bind:scale>
 			<Surface
@@ -172,11 +167,11 @@
 				{scale}
 				cancelOnLeave={false}
 			>
-				<!-- TODO maybe extract `WhiteboardContent` or `WhiteboardEntityList` or similar -->
+				<!-- TODO maybe extract `MuralContent` or `MuralEntityList` or similar -->
 				<!-- TODO maybe should be `SvgEntity` instead? and `SvgEntities`? -->
 				<svg>
 					{#each entities as entity (entity)}
-						<WhiteboardEntity {entity} />
+						<MuralEntity {entity} />
 					{/each}
 					{#if pointing && !pointerDown && selectedBrush === 'polyline' && $selectedEntity?.type === 'polyline' && selectedPolylinePointsData?.length}
 						<line
@@ -216,11 +211,11 @@
 			clear all
 		</button>
 	</div>
-	<WhiteboardEntityList {entities} on:action={(e) => act(e.detail)} {entitySelection} />
+	<MuralEntityList {entities} on:action={(e) => act(e.detail)} {entitySelection} />
 </div>
 
 <style>
-	.whiteboard {
+	.mural {
 		width: 100%;
 		max-width: 100%;
 		display: flex;
@@ -246,6 +241,6 @@
 		display: block;
 		width: var(--width);
 		height: var(--height);
-		background: var(--whiteboard_bg, #fff);
+		background: var(--mural_bg, #fff);
 	}
 </style>

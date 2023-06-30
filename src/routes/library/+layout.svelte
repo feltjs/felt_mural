@@ -2,11 +2,11 @@
 	import {page} from '$app/stores';
 	import 'prismjs/themes/prism.min.css';
 	import {setContext} from 'svelte';
+	import Breadcrumbs from '@feltjs/felt-ui/Breadcrumbs.svelte';
 
 	import LibraryMenu from '$routes/library/LibraryMenu.svelte';
 	import {libraryItemsByName, libraryItems} from '$routes/library/items';
 	import FeltFooter from '$routes/FeltFooter.svelte';
-	import Breadcrumbs from '$lib/Breadcrumbs.svelte';
 	import LibraryPanel from '$routes/library/LibraryPanel.svelte';
 
 	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);
