@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Prism from 'prismjs';
+	import * as Prism from 'prismjs';
 	import 'prism-svelte';
 
 	// TODO move this

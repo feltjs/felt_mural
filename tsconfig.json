@@ -16,7 +16,6 @@
 		"importHelpers": true,
 		"skipLibCheck": true,
 		"allowJs": true,
-		"checkJs": true,
-		"allowSyntheticDefaultImports": true
+		"checkJs": true
 	}
 }
