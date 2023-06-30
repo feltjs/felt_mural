@@ -22,11 +22,12 @@ npm i -D @feltjs/felt-mural
 ```
 
 ```ts
-import {Mural} from '@feltjs/felt-mural';
+// use deep imports:
+import Mural from '@feltjs/felt-mural/Mural.svelte';
 ```
 
 See [the library](https://mural.felt.dev/library) for early docs and demos,
-and [`src/lib/index.ts`](src/lib/index.ts) for the full exports.
+and [`src/lib/exports.ts`](src/lib/exports.ts) for the available modules.
 
 ## build
 

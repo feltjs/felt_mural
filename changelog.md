@@ -1,5 +1,9 @@
 # changelog
 
+## 0.1.1
+
+- change to require deep imports
+
 ## 0.1.0
 
 - implement and publish
