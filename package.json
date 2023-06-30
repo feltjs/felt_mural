@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "homepage": "https://mural.felt.dev/",
+  "license": "Unlicense",
   "engines": {
     "node": ">=18.6"
   },

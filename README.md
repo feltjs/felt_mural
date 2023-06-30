@@ -8,7 +8,7 @@
 It provides a proof-of-concept demo for collaborative editing using
 [felt-server](https://github.com/feltjs/felt-server). (TODO link a demo video)
 
-Longer term, we hope to make this a polished collaborative drawing tool,
+Eventually we hope to make this a polished collaborative drawing tool,
 but for now it's on the backburner and exists only to demonstrate
 how felt-server can be leveraged by any web frontend, including static sites,
 to create collaborative experiences scoped to the people in your Felt communities.
@@ -72,4 +72,6 @@ gro deploy
 [Gro](https://github.com/feltjs/gro)
 & [more](package.json)
 
-## [🐦](https://wikipedia.org/wiki/Free_and_open-source_software)
+## license [🐦](https://wikipedia.org/wiki/Free_and_open-source_software)
+
+public domain ⚘ [The Unlicense](license)
