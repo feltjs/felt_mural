@@ -92,6 +92,7 @@
 		position: relative;
 		width: var(--width, 100%);
 		height: var(--height, 100%);
+		-webkit-user-select: none;
 		user-select: none;
 		touch-action: none;
 	}
