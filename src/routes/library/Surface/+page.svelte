@@ -2,10 +2,10 @@
 	import {writable, type Writable} from 'svelte/store';
 	import {round} from '@feltjs/util/maths.js';
 
-	import {createCircle, updateEntityData, type SvgEntity} from '$lib/entity';
+	import {createCircle, updateItemData, type SvgItem} from '$lib/item';
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import MuralEntity from '$lib/MuralEntity.svelte';
+	import MuralItem from '$lib/MuralItem.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library//LibraryItem.svelte';
 
@@ -39,21 +39,21 @@
 		shadow = SHADOW;
 	};
 
-	const entities: Array<Writable<SvgEntity>> = [createCircle(0, 0, 10, '#7f7166')].map((e) =>
+	const items: Array<Writable<SvgItem>> = [createCircle(0, 0, 10, '#7f7166')].map((e) =>
 		writable(e),
 	);
 
-	// TODO attach springs to the following entities
+	// TODO attach springs to the following items
 
-	$: updateEntities(pointerDown, pointerX, pointerY);
+	$: updateItems(pointerDown, pointerX, pointerY);
 
-	const updateEntities = (
+	const updateItems = (
 		pointerDown: boolean | undefined,
 		pointerX: number | undefined,
 		pointerY: number | undefined,
 	) => {
-		const entity = entities[0];
-		updateEntityData(entity, {
+		const item = items[0];
+		updateItemData(item, {
 			cx: pointerX,
 			cy: pointerY,
 			fill: pointerDown ? '#397fc6' : '#7f7166',
@@ -81,8 +81,8 @@
 					<!-- TODO if we want pointer-interactive elements, should they be children of `Surface`? -->
 					{#if pointerX !== undefined && pointerY !== undefined}
 						<svg>
-							{#each entities as entity (entity)}
-								<MuralEntity {entity} />
+							{#each items as item (item)}
+								<MuralItem {item} />
 							{/each}
 						</svg>
 					{/if}

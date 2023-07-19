@@ -1,5 +1,10 @@
 # changelog
 
+## 0.2.0
+
+- **break**: rename API "entity" to "item" and fix various things
+  ([#3](https://github.com/feltjs/felt-mural/pull/3))
+
 ## 0.1.2
 
 - support darkmode

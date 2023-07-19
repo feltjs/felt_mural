@@ -4,52 +4,50 @@
 	import {round} from '@feltjs/util/maths.js';
 
 	import {
-		type SvgEntity,
+		type SvgItem,
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		DEFAULT_POLYLINE_FILL,
 		DEFAULT_POLYLINE_FILL_2,
 		type MuralAction,
 		toPointsData,
-	} from '$lib/entity';
+	} from '$lib/item';
 
-	export let entity: Writable<SvgEntity>;
-	export let entitySelection: Writable<Writable<SvgEntity> | null>;
+	export let item: Writable<SvgItem>;
+	export let itemSelection: Writable<Writable<SvgItem> | null>;
 
-	$: selected = $entitySelection === entity;
+	$: selected = $itemSelection === item;
 
 	const dispatch = createEventDispatcher<{action: MuralAction}>();
 
-	$: ({enableFill, fill, hidden, opacity} = $entity);
+	$: ({enableFill, fill, hidden, opacity} = $item);
 	$: finalFill = enableFill ? fill ?? DEFAULT_POLYLINE_FILL : undefined;
 	$: finalOpacity = opacity ?? 1;
 
 	// TOD clean up the copypasta below
-
-	// TODO navigate with arrow keys
 </script>
 
 <li
-	class="mural-entity-list-item selectable"
+	class="mural-item-list-item selectable"
 	class:hidden
 	class:selected
 	aria-hidden
-	on:click={() => ($entitySelection = entity)}
+	on:click={() => ($itemSelection = item)}
 >
 	<button
 		class="icon_button plain"
 		class:selected={hidden}
 		on:click={() =>
 			dispatch('action', {
-				type: 'updateEntity',
-				id: $entity.id,
-				data: {hidden: !$entity.hidden},
+				type: 'updateItem',
+				id: $item.id,
+				data: {hidden: !$item.hidden},
 			})}
 		>{#if hidden}•{:else}👁{/if}</button
 	>
-	<div class="type">{$entity.type}</div>
+	<div class="type">{$item.type}</div>
 	<label>
 		<input
-			class="entity-input"
+			class="item-input"
 			type="range"
 			min={0}
 			max={1}
@@ -57,53 +55,53 @@
 			value={finalOpacity}
 			on:input={(e) =>
 				dispatch('action', {
-					type: 'updateEntity',
-					id: $entity.id,
+					type: 'updateItem',
+					id: $item.id,
 					data: {opacity: Number(e.currentTarget.value)},
 				})}
-			title="modify the {$entity.type}'s opacity"
+			title="modify the {$item.type}'s opacity"
 		/>
 		<small>opacity: {round(finalOpacity, 2)}</small>
 	</label>
 	<!-- TODO `pathLength` input (maybe a range?) -->
-	{#if $entity.type === 'circle'}
-		<label title="modify the {$entity.type}'s x position">
+	{#if $item.type === 'circle'}
+		<label title="modify the {$item.type}'s x position">
 			<input
-				class="entity-input"
+				class="item-input"
 				type="number"
-				value={$entity.cx}
+				value={$item.cx}
 				on:input={(e) =>
 					dispatch('action', {
-						type: 'updateEntity',
-						id: $entity.id,
+						type: 'updateItem',
+						id: $item.id,
 						data: {cx: Number(e.currentTarget.value)},
 					})}
 			/>
 			<small>x</small>
 		</label>
-		<label title="modify the {$entity.type}'s y position">
+		<label title="modify the {$item.type}'s y position">
 			<input
-				class="entity-input"
+				class="item-input"
 				type="number"
-				value={$entity.cy}
+				value={$item.cy}
 				on:input={(e) =>
 					dispatch('action', {
-						type: 'updateEntity',
-						id: $entity.id,
+						type: 'updateItem',
+						id: $item.id,
 						data: {cy: Number(e.currentTarget.value)},
 					})}
 			/>
 			<small>y</small>
 		</label>
-		<label title="modify the {$entity.type}'s radius">
+		<label title="modify the {$item.type}'s radius">
 			<input
-				class="entity-input"
+				class="item-input"
 				type="number"
-				value={$entity.r}
+				value={$item.r}
 				on:input={(e) =>
 					dispatch('action', {
-						type: 'updateEntity',
-						id: $entity.id,
+						type: 'updateItem',
+						id: $item.id,
 						data: {r: Number(e.currentTarget.value)},
 					})}
 			/>
@@ -117,23 +115,23 @@
 					checked={enableFill}
 					on:input={(e) =>
 						dispatch('action', {
-							type: 'updateEntity',
-							id: $entity.id,
+							type: 'updateItem',
+							id: $item.id,
 							data: {enableFill: e.currentTarget.checked},
 						})}
-					title="the {$entity.type}'s fill is {$entity.enableFill ? 'enabled' : 'disabled'}"
+					title="the {$item.type}'s fill is {$item.enableFill ? 'enabled' : 'disabled'}"
 				/>
 			</div>
 			<label>
 				<input
-					class="entity-input"
+					class="item-input"
 					type="color"
 					disabled={!enableFill}
 					value={finalFill === 'none' ? '#000000' : finalFill}
 					on:input={(e) =>
 						dispatch('action', {
-							type: 'updateEntity',
-							id: $entity.id,
+							type: 'updateItem',
+							id: $item.id,
 							data: {fill: e.currentTarget.value},
 						})}
 				/>
@@ -142,23 +140,23 @@
 				>
 			</label>
 		</div>
-	{:else if $entity.type === 'polyline'}
+	{:else if $item.type === 'polyline'}
 		<label>
 			<input
-				class="entity-input"
+				class="item-input"
 				type="number"
-				value={$entity.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+				value={$item.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
 				on:input={(e) =>
 					dispatch('action', {
-						type: 'updateEntity',
-						id: $entity.id,
+						type: 'updateItem',
+						id: $item.id,
 						data: {strokeWidth: Number(e.currentTarget.value)},
 					})}
 			/>
 			<small>stroke-width</small>
 		</label>
 		<span class="content">
-			{toPointsData($entity).length}
+			{toPointsData($item).length}
 			<br />
 			<small>points</small>
 		</span>
@@ -169,26 +167,26 @@
 					checked={enableFill}
 					on:input={(e) =>
 						dispatch('action', {
-							type: 'updateEntity',
-							id: $entity.id,
+							type: 'updateItem',
+							id: $item.id,
 							data: {
 								enableFill: e.currentTarget.checked,
 								fill: fill ?? (e.currentTarget.checked ? DEFAULT_POLYLINE_FILL_2 : undefined),
 							},
 						})}
-					title="the {$entity.type}'s fill is {$entity.enableFill ? 'enabled' : 'disabled'}"
+					title="the {$item.type}'s fill is {$item.enableFill ? 'enabled' : 'disabled'}"
 				/>
 			</div>
-			<label title="modify the {$entity.type}'s fill color">
+			<label title="modify the {$item.type}'s fill color">
 				<input
-					class="entity-input"
+					class="item-input"
 					type="color"
 					disabled={!enableFill}
 					value={finalFill === 'none' ? '#000000' : finalFill}
 					on:input={(e) =>
 						dispatch('action', {
-							type: 'updateEntity',
-							id: $entity.id,
+							type: 'updateItem',
+							id: $item.id,
 							data: {fill: e.currentTarget.value},
 						})}
 				/>
@@ -200,12 +198,12 @@
 	{/if}
 	<button
 		class="icon_button plain"
-		on:click={() => dispatch('action', {type: 'removeEntity', id: $entity.id})}>🗙</button
+		on:click={() => dispatch('action', {type: 'removeItem', id: $item.id})}>🗙</button
 	>
 </li>
 
 <style>
-	.mural-entity-list-item {
+	.mural-item-list-item {
 		border-radius: var(--border_radius);
 		display: flex;
 		flex-wrap: wrap;
@@ -218,7 +216,7 @@
 	.type {
 		width: 8rem;
 	}
-	.entity-input {
+	.item-input {
 		width: 8rem;
 		min-width: 8rem;
 	}
