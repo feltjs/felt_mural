@@ -67,7 +67,7 @@ export const toPointsData = (entity: SvgPolylineEntity): number[] =>
 	entity.pointsData || (entity.pointsData = parseEntityPointsData(entity.points));
 
 // TODO refactor these, maybe remove altogether
-export const DEFAULT_POLYLINE_STROKE = '#000000';
+export const DEFAULT_POLYLINE_STROKE = '#666666';
 export const DEFAULT_POLYLINE_STROKE_WIDTH = 3;
 export const DEFAULT_POLYLINE_FILL = 'none';
 export const DEFAULT_POLYLINE_FILL_2 = '#ddbeef';

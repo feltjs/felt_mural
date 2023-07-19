@@ -14,10 +14,10 @@
 	// user options
 	const WIDTH = 750;
 	const HEIGHT = 512;
-	const WHITEBOARD_BG = '#ffffff';
+	const MURAL_BG = 'transparent';
 	let width = WIDTH;
 	let height = HEIGHT;
-	let mural_bg = WHITEBOARD_BG;
+	let mural_bg: string | undefined;
 
 	// surface props
 	let scale: number; // computed from the layout
@@ -35,7 +35,7 @@
 		// reset user options
 		width = WIDTH;
 		height = HEIGHT;
-		mural_bg = WHITEBOARD_BG;
+		mural_bg = undefined;
 	};
 
 	let entities: Array<Writable<SvgEntity>> = [
@@ -45,7 +45,7 @@
 </script>
 
 <LibraryItem name={LIBRARY_ITEM_NAME}>
-	<div class="box width_full" style:--mural_bg={mural_bg}>
+	<div class="box width_full" style:--mural_bg={MURAL_BG}>
 		<Mural bind:entities {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
 		<section>
 			<CodeExample
@@ -86,7 +86,7 @@
 							pointerY === undefined &&
 							width === WIDTH &&
 							height === HEIGHT &&
-							mural_bg === WHITEBOARD_BG}>reset settings</button
+							mural_bg === undefined}>reset settings</button
 					>
 				</fieldset>
 			</form>
