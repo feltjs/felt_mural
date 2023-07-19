@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {writable, type Writable} from 'svelte/store';
+	import type {Writable} from 'svelte/store';
 	import {round} from '@feltjs/util/maths.js';
 
-	import {createCircle, type SvgEntity} from '$lib/entity';
+	import type {SvgEntity} from '$lib/entity';
 	import Mural from '$lib/Mural.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library/LibraryItem.svelte';
@@ -38,10 +38,7 @@
 		mural_bg = undefined;
 	};
 
-	let entities: Array<Writable<SvgEntity>> = [
-		createCircle(300, 300, 20, '#00bb91'),
-		createCircle(50, 50, 10),
-	].map((e) => writable(e));
+	let entities: Array<Writable<SvgEntity>> = [];
 </script>
 
 <LibraryItem name={LIBRARY_ITEM_NAME}>

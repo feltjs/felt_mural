@@ -24,8 +24,6 @@
 	$: finalOpacity = opacity ?? 1;
 
 	// TOD clean up the copypasta below
-
-	// TODO navigate with arrow keys
 </script>
 
 <li

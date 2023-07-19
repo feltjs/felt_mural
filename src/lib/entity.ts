@@ -70,8 +70,8 @@ export const toPointsData = (entity: SvgPolylineEntity): number[] =>
 export const DEFAULT_POLYLINE_STROKE = '#666666';
 export const DEFAULT_POLYLINE_STROKE_WIDTH = 3;
 export const DEFAULT_POLYLINE_FILL = 'none';
-export const DEFAULT_POLYLINE_FILL_2 = '#ddbeef';
-export const DEFAULT_CIRCLE_FILL = '#00a1ff';
+export const DEFAULT_POLYLINE_FILL_2 = '#c7beef';
+export const DEFAULT_CIRCLE_FILL = '#75a6d7';
 
 export const createPolyline = (): SvgPolylineEntity => ({
 	id: crypto.randomUUID(),
