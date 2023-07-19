@@ -241,6 +241,6 @@
 		display: block;
 		width: var(--width);
 		height: var(--height);
-		background: var(--mural_bg, #fff);
+		background: var(--mural_bg, var(--fg));
 	}
 </style>

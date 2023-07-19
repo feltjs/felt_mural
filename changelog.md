@@ -1,5 +1,10 @@
 # changelog
 
+## 0.1.2
+
+- support darkmode
+  ([#2](https://github.com/feltjs/felt-mural/pull/2))
+
 ## 0.1.1
 
 - change to require deep imports
