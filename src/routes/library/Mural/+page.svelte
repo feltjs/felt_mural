@@ -2,7 +2,7 @@
 	import type {Writable} from 'svelte/store';
 	import {round} from '@feltjs/util/maths.js';
 
-	import type {SvgEntity} from '$lib/entity';
+	import type {SvgItem} from '$lib/item';
 	import Mural from '$lib/Mural.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library/LibraryItem.svelte';
@@ -38,12 +38,12 @@
 		mural_bg = undefined;
 	};
 
-	let entities: Array<Writable<SvgEntity>> = [];
+	let items: Array<Writable<SvgItem>> = [];
 </script>
 
 <LibraryItem name={LIBRARY_ITEM_NAME}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
-		<Mural bind:entities {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
+		<Mural bind:items {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
 		<section>
 			<CodeExample
 				code={`<Mural
@@ -54,8 +54,8 @@
 	pointerY={${pointerY && round(pointerY, 1)}}
 	pointerDown={${pointerDown}}
 >
-	<MuralEntityList
-		entities={[ ... ]}
+	<MuralItemList
+		items={[ ... ]}
 	/>
 </Mural>`}
 			/>

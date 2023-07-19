@@ -1,9 +1,9 @@
 export const exports = [
-	'lib/entity.ts',
+	'lib/item.ts',
 	'lib/Mural.svelte',
-	'lib/MuralEntity.svelte',
-	'lib/MuralEntityList.svelte',
-	'lib/MuralEntityListItem.svelte',
+	'lib/MuralItem.svelte',
+	'lib/MuralItemList.svelte',
+	'lib/MuralItemListItem.svelte',
 	'lib/Scaled.svelte',
 	'lib/Surface.svelte',
 ];

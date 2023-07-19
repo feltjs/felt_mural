@@ -4,8 +4,8 @@
 
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import MuralEntity from '$lib/MuralEntity.svelte';
-	import MuralEntityList from '$lib/MuralEntityList.svelte';
+	import MuralItem from '$lib/MuralItem.svelte';
+	import MuralItemList from '$lib/MuralItemList.svelte';
 	import {
 		createCircle,
 		createPolyline,
@@ -13,15 +13,15 @@
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		parsers,
 		toPointsData,
-		updateEntityData,
-		type EntityId,
-		type SvgEntity,
+		updateItemData,
+		type ItemId,
+		type SvgItem,
 		type MuralAction,
-	} from '$lib/entity';
+	} from '$lib/item';
 
 	const dispatch = createEventDispatcher<{action: MuralAction}>();
 
-	export let entities: Array<Writable<SvgEntity>> = [];
+	export let items: Array<Writable<SvgItem>> = [];
 	export let width: number;
 	export let height: number;
 	export let pointing: boolean | undefined = undefined;
@@ -30,66 +30,66 @@
 	export let pointerY: number | undefined = undefined;
 	export let scale: number | undefined = undefined;
 
-	const createEntity = (): SvgEntity | null => {
-		const entityData =
+	const createItem = (): SvgItem | null => {
+		const itemData =
 			selectedBrush === 'pen' || selectedBrush === 'polyline'
 				? createPolyline()
 				: selectedBrush === 'circle'
 				? createCircle(pointerX, pointerY)
 				: null;
-		if (!entityData) return null;
-		return entityData;
+		if (!itemData) return null;
+		return itemData;
 	};
 
 	// hooks that can be overridden or externally bound for calling
-	export let addEntity: (
-		list: Array<Writable<SvgEntity>>,
-		entity: Writable<SvgEntity>,
-		id: EntityId,
-	) => Array<Writable<SvgEntity>> = (list, entity) => list.concat(entity);
-	export let updateEntity: <TEntity extends SvgEntity>(
-		entity: Writable<TEntity>,
-		data: Partial<TEntity>,
-	) => void = (entity, data) => updateEntityData(entity, data as any); // TODO type hack
-	export let selectEntityToDraw: (
-		list: Array<Writable<SvgEntity>>,
-	) => Writable<SvgEntity> | undefined = (list) => $entitySelection || list.at(-1);
-	export let removeEntity: (
-		list: Array<Writable<SvgEntity>>,
-		entity: Writable<SvgEntity>,
-		id: EntityId,
-	) => Array<Writable<SvgEntity>> = (list, entity): Array<Writable<SvgEntity>> =>
-		list.filter((e) => e !== entity);
-	export let removeAllEntities: (list: Array<Writable<SvgEntity>>) => Array<Writable<SvgEntity>> = (
+	export let addItem: (
+		list: Array<Writable<SvgItem>>,
+		item: Writable<SvgItem>,
+		id: ItemId,
+	) => Array<Writable<SvgItem>> = (list, item) => list.concat(item);
+	export let updateItem: <TItem extends SvgItem>(
+		item: Writable<TItem>,
+		data: Partial<TItem>,
+	) => void = (item, data) => updateItemData(item, data as any); // TODO type hack
+	export let selectItemToDraw: (list: Array<Writable<SvgItem>>) => Writable<SvgItem> | undefined = (
+		list,
+	) => $itemSelection || list.at(-1);
+	export let removeItem: (
+		list: Array<Writable<SvgItem>>,
+		item: Writable<SvgItem>,
+		id: ItemId,
+	) => Array<Writable<SvgItem>> = (list, item): Array<Writable<SvgItem>> =>
+		list.filter((e) => e !== item);
+	export let removeAllItems: (list: Array<Writable<SvgItem>>) => Array<Writable<SvgItem>> = (
 		_list,
 	) => [];
 
-	const entitiesById = new Map<string, Writable<SvgEntity>>();
+	const itemsById = new Map<string, Writable<SvgItem>>();
 
 	export const handleAction = (action: MuralAction): void => {
 		switch (action.type) {
-			case 'addEntity': {
-				const entity = writable(action.entity);
-				entitiesById.set(action.entity.id, entity);
-				entities = addEntity(entities, entity, action.entity.id);
+			case 'addItem': {
+				const item = writable(action.item);
+				itemsById.set(action.item.id, item);
+				items = addItem(items, item, action.item.id);
 				break;
 			}
-			case 'updateEntity': {
-				const entity = entitiesById.get(action.id);
-				if (!entity) return;
-				updateEntity(entity, action.data);
+			case 'updateItem': {
+				const item = itemsById.get(action.id);
+				if (!item) return;
+				updateItem(item, action.data);
 				break;
 			}
-			case 'removeEntity': {
-				const entity = entitiesById.get(action.id);
-				if (!entity) return;
-				entitiesById.delete(action.id);
-				entities = removeEntity(entities, entity, action.id);
+			case 'removeItem': {
+				const item = itemsById.get(action.id);
+				if (!item) return;
+				itemsById.delete(action.id);
+				items = removeItem(items, item, action.id);
 				break;
 			}
-			case 'removeAllEntities': {
-				entitiesById.clear();
-				entities = removeAllEntities(entities);
+			case 'removeAllItems': {
+				itemsById.clear();
+				items = removeAllItems(items);
 				break;
 			}
 		}
@@ -106,7 +106,7 @@
 	// other options
 	export let brushes: BrushType[] = ['pen', 'polyline', 'circle'];
 	export let selectedBrush: BrushType = brushes[0];
-	export let entitySelection: Writable<Writable<SvgEntity> | null> = writable(null);
+	export let itemSelection: Writable<Writable<SvgItem> | null> = writable(null);
 
 	$: if (pointerDown) {
 		startDrawing();
@@ -119,13 +119,13 @@
 		if (drawing) return;
 		// TODO these probably won't stay simple, but if they do we could bind `pointerDown` directly to `drawing`
 		drawing = true;
-		if ($entitySelection) return;
-		const entity = createEntity();
-		if (!entity) return;
-		act({type: 'addEntity', entity});
+		if ($itemSelection) return;
+		const item = createItem();
+		if (!item) return;
+		act({type: 'addItem', item});
 		// TODO refactor this, very gross
 		if (selectedBrush === 'polyline') {
-			$entitySelection = entities.find((e) => get(e).id === entity.id) || null;
+			$itemSelection = items.find((e) => get(e).id === item.id) || null;
 		}
 	};
 	const stopDrawing = () => {
@@ -135,13 +135,13 @@
 
 	$: if (drawing && pointerX !== undefined && pointerY !== undefined) drawAt(pointerX, pointerY);
 	const drawAt = (x: number, y: number) => {
-		const entity = selectEntityToDraw(entities);
-		if (!entity) return; // we expect an entity but just in case
-		const {id, type} = get(entity);
-		// TODO seems like this belongs in `updateEntity`
+		const item = selectItemToDraw(items);
+		if (!item) return; // we expect an item but just in case
+		const {id, type} = get(item);
+		// TODO seems like this belongs in `updateItem`
 		if (type === 'polyline') {
 			act({
-				type: 'updateEntity',
+				type: 'updateItem',
 				id,
 				data: {appendPoints: [parsers.x(x), parsers.y(y)]},
 			});
@@ -149,11 +149,11 @@
 		} // else unhandled type
 	};
 
-	$: enableBrushes = $entitySelection === null;
+	$: enableBrushes = $itemSelection === null;
 
-	$: selectedEntity = $entitySelection;
+	$: selectedItem = $itemSelection;
 	$: selectedPolylinePointsData =
-		$selectedEntity?.type === 'polyline' ? toPointsData($selectedEntity) : undefined;
+		$selectedItem?.type === 'polyline' ? toPointsData($selectedItem) : undefined;
 </script>
 
 <div class="mural" class:active={pointerDown} style:--width="{width}px" style:--height="{height}px">
@@ -167,20 +167,20 @@
 				{scale}
 				cancelOnLeave={false}
 			>
-				<!-- TODO maybe extract `MuralContent` or `MuralEntityList` or similar -->
-				<!-- TODO maybe should be `SvgEntity` instead? and `SvgEntities`? -->
+				<!-- TODO maybe extract `MuralContent` or `MuralItemList` or similar -->
+				<!-- TODO maybe should be `SvgItem` instead? and `SvgItems`? -->
 				<svg>
-					{#each entities as entity (entity)}
-						<MuralEntity {entity} />
+					{#each items as item (item)}
+						<MuralItem {item} />
 					{/each}
-					{#if pointing && !pointerDown && selectedBrush === 'polyline' && $selectedEntity?.type === 'polyline' && selectedPolylinePointsData?.length}
+					{#if pointing && !pointerDown && selectedBrush === 'polyline' && $selectedItem?.type === 'polyline' && selectedPolylinePointsData?.length}
 						<line
 							x1={selectedPolylinePointsData.at(-2)}
 							y1={selectedPolylinePointsData.at(-1)}
 							x2={pointerX}
 							y2={pointerY}
-							stroke={$selectedEntity.stroke ?? DEFAULT_POLYLINE_STROKE}
-							stroke-width={$selectedEntity.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+							stroke={$selectedItem.stroke ?? DEFAULT_POLYLINE_STROKE}
+							stroke-width={$selectedItem.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
 						/>
 					{/if}
 				</svg>
@@ -193,7 +193,7 @@
 				<button
 					class:selected={enableBrushes && selectedBrush === brush}
 					on:click={() => {
-						$entitySelection = null;
+						$itemSelection = null;
 						selectedBrush = brush;
 					}}
 				>
@@ -203,15 +203,15 @@
 		</div>
 		<button
 			on:click={() => {
-				$entitySelection = null;
-				act({type: 'removeAllEntities'});
+				$itemSelection = null;
+				act({type: 'removeAllItems'});
 			}}
-			disabled={!entities.length}
+			disabled={!items.length}
 		>
 			clear all
 		</button>
 	</div>
-	<MuralEntityList {entities} on:action={(e) => act(e.detail)} {entitySelection} />
+	<MuralItemList {items} on:action={(e) => act(e.detail)} {itemSelection} />
 </div>
 
 <style>
