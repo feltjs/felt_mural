@@ -14,7 +14,7 @@
 	// user options
 	const WIDTH = 750;
 	const HEIGHT = 512;
-	const MURAL_BG = 'transparent';
+	const MURAL_BG = 'var(--bg)';
 	let width = WIDTH;
 	let height = HEIGHT;
 	let mural_bg: string | undefined;
