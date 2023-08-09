@@ -5,12 +5,11 @@
 	import FeltFooter from '$routes/FeltFooter.svelte';
 </script>
 
-<!-- <h1>@feltjs/felt-ui</h1> -->
-<!-- TODO publish and link the above to npm -->
-
 <div class="width_md">
-	<section class="panel">
-		<Description />
+	<section>
+		<div class="panel padded_md">
+			<Description />
+		</div>
 	</section>
 	<section>
 		<a class="library-link panel" href="{base}/library">library</a>
