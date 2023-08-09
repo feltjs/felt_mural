@@ -5,7 +5,7 @@
 	import CodeExample from '$routes/library/CodeExample.svelte';
 	import LibraryItem from '$routes/library/LibraryItem.svelte';
 
-	const LIBRARY_ITEM_NAME = 'Scaled'; // TODO BLOCK should be item, from context?
+	// const LIBRARY_ITEM_NAME = 'Scaled'; // TODO should be item, from context?
 
 	// user options
 	const MAX_WIDTH = 1280;
