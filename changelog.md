@@ -1,5 +1,10 @@
 # changelog
 
+## 0.2.1
+
+- UX tweaks
+  ([#4](https://github.com/feltjs/felt-mural/pull/4))
+
 ## 0.2.0
 
 - **break**: rename API "entity" to "item" and fix various things
