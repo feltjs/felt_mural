@@ -24,6 +24,11 @@
 	export let items: Array<Writable<SvgItem>> = [];
 	export let width: number;
 	export let height: number;
+	// TODO see `Surface` file comments,
+	// its design is fundamentally broken and this inherited API
+	// will either have to change or its values set in this component with custom logic,
+	// because we'll switch to SVG elements receiving the interaction events -
+	// unless we can use bubbling to do this automatically for us?
 	export let pointing: boolean | undefined = undefined;
 	export let pointerDown: boolean | undefined = undefined;
 	export let pointerX: number | undefined = undefined;
@@ -159,6 +164,7 @@
 <div class="mural" class:active={pointerDown} style:--width="{width}px" style:--height="{height}px">
 	<div class="content">
 		<Scaled {width} {height} bind:scale>
+			<!-- TODO see `Surface` file comments, its design is fundamentally broken -->
 			<Surface
 				bind:pointing
 				bind:pointerDown
