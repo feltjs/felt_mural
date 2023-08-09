@@ -1,6 +1,10 @@
 <script lang="ts">
 	import {swallow} from '@feltjs/util/dom.js';
 
+	// TODO this was copypasted from another project and is broken for this usecase
+	// because it's designed to intercept - be the surface for - all pointer interactions.
+	// But for the Mural we want individual SVG elements to be interactive at the API level.
+
 	// TODO probably add events
 	export let scale = 1; // makes the pointer position calculations transform-scale-aware
 	export let pointing: boolean | undefined = undefined;

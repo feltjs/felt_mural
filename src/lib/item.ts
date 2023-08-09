@@ -1,4 +1,4 @@
-import type {Flavored} from '@feltjs/util';
+import type {Flavored} from '@feltjs/util/types.js';
 import {round} from '@feltjs/util/maths.js';
 import type {Writable} from 'svelte/store';
 

@@ -27,7 +27,7 @@ import Mural from '@feltjs/felt-mural/Mural.svelte';
 ```
 
 See [the library](https://mural.felt.dev/library) for early docs and demos,
-and [`src/lib/exports.ts`](src/lib/exports.ts) for the available modules.
+and [`src/lib`](src/lib) for the available modules.
 
 ## build
 

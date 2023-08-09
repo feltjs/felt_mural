@@ -13,6 +13,8 @@
 	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);
 	$: itemsRelatedToSelected = selectedItem?.related?.map((r) => libraryItemsByName.get(r)!);
 
+	// TODO this code needs to be moved into `Library`
+
 	// TODO hacky to avoid a circular dependency problem
 	setContext('libraryItemsByName', libraryItemsByName);
 </script>
