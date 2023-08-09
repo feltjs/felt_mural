@@ -6,6 +6,7 @@ import Scaled from '$routes/library/Scaled/+page.svelte';
 
 // TODO dynamic import
 
+// TODO rename?
 export interface MenuItem {
 	slug: string;
 	pathname: string;
