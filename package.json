@@ -22,6 +22,7 @@
     "@feltjs/util": "^0.9.0",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.22.4",
+    "@sveltejs/package": "^2.2.2",
     "@types/prismjs": "^1.26.0",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
