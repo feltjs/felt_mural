@@ -43,6 +43,7 @@
     "root": true,
     "extends": "@feltjs",
     "ignorePatterns": [
+      "gro.config.ts",
       "svelte.config.js",
       "vite.config.js"
     ]
