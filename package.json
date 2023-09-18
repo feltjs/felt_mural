@@ -61,5 +61,35 @@
         }
       }
     ]
+  },
+  "exports": {
+    "./item.js": {
+      "default": "./dist/item.js",
+      "types": "./dist/item.d.ts"
+    },
+    "./Mural.svelte": {
+      "svelte": "./dist/Mural.svelte",
+      "types": "./dist/Mural.svelte.d.ts"
+    },
+    "./MuralItem.svelte": {
+      "svelte": "./dist/MuralItem.svelte",
+      "types": "./dist/MuralItem.svelte.d.ts"
+    },
+    "./MuralItemList.svelte": {
+      "svelte": "./dist/MuralItemList.svelte",
+      "types": "./dist/MuralItemList.svelte.d.ts"
+    },
+    "./MuralItemListItem.svelte": {
+      "svelte": "./dist/MuralItemListItem.svelte",
+      "types": "./dist/MuralItemListItem.svelte.d.ts"
+    },
+    "./Scaled.svelte": {
+      "svelte": "./dist/Scaled.svelte",
+      "types": "./dist/Scaled.svelte.d.ts"
+    },
+    "./Surface.svelte": {
+      "svelte": "./dist/Surface.svelte",
+      "types": "./dist/Surface.svelte.d.ts"
+    }
   }
 }
