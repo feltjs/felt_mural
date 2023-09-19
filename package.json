@@ -19,7 +19,7 @@
     "@feltjs/eslint-config": "^0.3.1",
     "@feltjs/felt-ui": "^0.65.3",
     "@feltjs/gro": "^0.82.0",
-    "@feltjs/util": "^0.9.0",
+    "@feltjs/util": "^0.9.1",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.22.4",
     "@sveltejs/package": "^2.2.2",
