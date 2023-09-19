@@ -1,5 +1,11 @@
 # @feltjs/felt-mural
 
+## 0.2.3
+
+### Patch Changes
+
+- 4a5848f: fix published artifacts
+
 ## 0.2.2
 
 ### Patch Changes
