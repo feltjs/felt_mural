@@ -18,10 +18,11 @@
   "devDependencies": {
     "@feltjs/eslint-config": "^0.3.1",
     "@feltjs/felt-ui": "^0.65.3",
-    "@feltjs/gro": "^0.80.0",
-    "@feltjs/util": "^0.9.0",
+    "@feltjs/gro": "^0.82.0",
+    "@feltjs/util": "^0.9.1",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.22.4",
+    "@sveltejs/package": "^2.2.2",
     "@types/prismjs": "^1.26.0",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
@@ -42,6 +43,7 @@
     "root": true,
     "extends": "@feltjs",
     "ignorePatterns": [
+      "gro.config.ts",
       "svelte.config.js",
       "vite.config.js"
     ]
@@ -60,5 +62,35 @@
         }
       }
     ]
+  },
+  "exports": {
+    "./item.js": {
+      "default": "./dist/item.js",
+      "types": "./dist/item.d.ts"
+    },
+    "./Mural.svelte": {
+      "svelte": "./dist/Mural.svelte",
+      "types": "./dist/Mural.svelte.d.ts"
+    },
+    "./MuralItem.svelte": {
+      "svelte": "./dist/MuralItem.svelte",
+      "types": "./dist/MuralItem.svelte.d.ts"
+    },
+    "./MuralItemList.svelte": {
+      "svelte": "./dist/MuralItemList.svelte",
+      "types": "./dist/MuralItemList.svelte.d.ts"
+    },
+    "./MuralItemListItem.svelte": {
+      "svelte": "./dist/MuralItemListItem.svelte",
+      "types": "./dist/MuralItemListItem.svelte.d.ts"
+    },
+    "./Scaled.svelte": {
+      "svelte": "./dist/Scaled.svelte",
+      "types": "./dist/Scaled.svelte.d.ts"
+    },
+    "./Surface.svelte": {
+      "svelte": "./dist/Surface.svelte",
+      "types": "./dist/Surface.svelte.d.ts"
+    }
   }
 }
