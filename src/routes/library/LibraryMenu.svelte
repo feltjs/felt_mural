@@ -10,11 +10,14 @@
 	export let items: MenuItem[];
 
 	let itemsByCategory: Record<string, MenuItem[]>;
-	$: itemsByCategory = items.reduce((result, c) => {
-		if (!(c.category in result)) result[c.category] = [];
-		result[c.category].push(c);
-		return result;
-	}, {} as Record<string, MenuItem[]>);
+	$: itemsByCategory = items.reduce(
+		(result, c) => {
+			if (!(c.category in result)) result[c.category] = [];
+			result[c.category].push(c);
+			return result;
+		},
+		{} as Record<string, MenuItem[]>,
+	);
 </script>
 
 {#each Object.entries(itemsByCategory) as [category, items] (category)}

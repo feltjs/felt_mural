@@ -136,7 +136,8 @@
 						})}
 				/>
 				<small
-					>{#if !enableFill || finalFill === 'none'}no {/if}fill</small
+					>{#if !enableFill || finalFill === 'none'}no
+					{/if}fill</small
 				>
 			</label>
 		</div>
@@ -191,7 +192,8 @@
 						})}
 				/>
 				<small
-					>{#if !enableFill || finalFill === 'none'}no {/if}fill</small
+					>{#if !enableFill || finalFill === 'none'}no
+					{/if}fill</small
 				>
 			</label>
 		</div>

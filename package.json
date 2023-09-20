@@ -32,8 +32,8 @@
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.43.0",
     "eslint-plugin-svelte": "^2.32.2",
-    "prettier": "^2.8.8",
-    "prettier-plugin-svelte": "^2.10.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.29.0",
     "svelte": "^4.1.2",
@@ -49,14 +49,16 @@
     "ignorePatterns": [
       "gro.config.ts",
       "svelte.config.js",
-      "vite.config.js"
+      "vite.config.ts"
     ]
   },
   "prettier": {
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
     "useTabs": true,
     "printWidth": 100,
     "singleQuote": true,
-    "trailingComma": "all",
     "bracketSpacing": false,
     "overrides": [
       {
