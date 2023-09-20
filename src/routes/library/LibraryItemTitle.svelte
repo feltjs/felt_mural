@@ -7,7 +7,7 @@
 	export let name: string;
 
 	// TODO hacky to avoid a circular dependency problem
-	const libraryItemsByName = getContext('libraryItemsByName') as any;
+	const libraryItemsByName: any = getContext('libraryItemsByName');
 	$: libraryItem = libraryItemsByName.get(name)!;
 
 	$: ({path, pathIsActive} = toLibraryPathInfo(libraryItem.slug, $page.url.pathname));

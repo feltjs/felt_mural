@@ -20,7 +20,7 @@
   ],
   "devDependencies": {
     "@changesets/changelog-git": "^0.1.14",
-    "@feltjs/eslint-config": "^0.3.1",
+    "@feltjs/eslint-config": "^0.4.0",
     "@feltjs/felt-ui": "^0.66.2",
     "@feltjs/gro": "^0.82.2",
     "@feltjs/util": "^0.9.1",
@@ -28,10 +28,10 @@
     "@sveltejs/kit": "^1.22.4",
     "@sveltejs/package": "^2.2.2",
     "@types/prismjs": "^1.26.0",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
-    "eslint": "^8.43.0",
-    "eslint-plugin-svelte": "^2.32.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
+    "eslint-plugin-svelte": "^2.33.2",
     "prettier": "^3.0.3",
     "prettier-plugin-svelte": "^3.0.3",
     "prism-svelte": "^0.5.0",
@@ -45,12 +45,7 @@
   },
   "eslintConfig": {
     "root": true,
-    "extends": "@feltjs",
-    "ignorePatterns": [
-      "gro.config.ts",
-      "svelte.config.js",
-      "vite.config.ts"
-    ]
+    "extends": "@feltjs"
   },
   "prettier": {
     "plugins": [
