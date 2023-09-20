@@ -8,7 +8,7 @@
 
 	// TODO hacky to avoid a circular dependency problem
 	const libraryItemsByName: any = getContext('libraryItemsByName');
-	$: libraryItem = libraryItemsByName.get(name)!;
+	$: libraryItem = libraryItemsByName.get(name);
 
 	$: ({path, pathIsActive} = toLibraryPathInfo(libraryItem.slug, $page.url.pathname));
 </script>
