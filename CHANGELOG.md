@@ -1,5 +1,11 @@
 # @feltjs/felt-mural
 
+## 0.2.4
+
+### Patch Changes
+
+- 180d31e: upgrade deps
+
 ## 0.2.3
 
 ### Patch Changes
