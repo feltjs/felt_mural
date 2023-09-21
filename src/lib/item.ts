@@ -1,5 +1,5 @@
-import type {Flavored} from '@feltjs/util/types.js';
-import {round} from '@feltjs/util/maths.js';
+import type {Flavored} from '@grogarden/util/types.js';
+import {round} from '@grogarden/util/maths.js';
 import type {Writable} from 'svelte/store';
 
 // TODO merge with felt (eventually, probably a core shared lib)

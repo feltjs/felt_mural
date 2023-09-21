@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {round} from '@feltjs/util/maths.js';
+	import {round} from '@grogarden/util/maths.js';
 
 	import Scaled from '$lib/Scaled.svelte';
 	import CodeExample from '$routes/library/CodeExample.svelte';

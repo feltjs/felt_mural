@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {swallow} from '@feltjs/util/dom.js';
+	import {swallow} from '@grogarden/util/dom.js';
 
 	// TODO this was copypasted from another project and is broken for this usecase
 	// because it's designed to intercept - be the surface for - all pointer interactions.

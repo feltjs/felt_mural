@@ -1,8 +1,7 @@
 <div class="prose box text_align_center width_sm">
 	<blockquote>
 		a proof-of-concept <a href="https://svelte.dev/">Svelte</a> component for collaborative drawing
-		using <a href="https://github.com/fuz-dev/fuz">felt-ui</a> and
-		<a href="https://github.com/feltjs/felt">felt</a>
+		using <a href="https://github.com/feltjs/felt">Felt</a>
 	</blockquote>
 	<p class="box">
 		<code

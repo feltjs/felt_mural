@@ -1,8 +1,7 @@
 # @feltjs/felt-mural
 
 > a proof-of-concept Svelte component for collaborative drawing using
-> [felt-ui](https://github.com/fuz-dev/fuz) and
-> [felt](https://github.com/feltjs/felt)
+> [Felt](https://github.com/feltjs/felt)
 
 `Mural` is a proof-of-concept demonstrating
 how [felt](https://github.com/feltjs/felt)
@@ -37,7 +36,7 @@ npm run build
 gro build
 ```
 
-See [Gro's build docs](https://github.com/feltjs/gro/blob/main/src/docs/build.md) for more.
+See [Gro's build docs](https://github.com/grogarden/gro/blob/main/src/lib/docs/build.md) for more.
 
 ## test
 
@@ -49,7 +48,7 @@ gro test -- uvu --forwarded_args 'to uvu'
 
 ## deploy
 
-[Deploy](https://github.com/feltjs/gro/blob/main/src/docs/deploy.md)
+[Deploy](https://github.com/grogarden/gro/blob/main/src/lib/docs/deploy.md)
 (build, commit, and push) to the `deploy` branch, e.g. for GitHub Pages:
 
 ```bash
@@ -64,13 +63,13 @@ gro deploy
 [SvelteKit](https://github.com/sveltejs/kit) ∙
 [Vite](https://github.com/vitejs/vite) ∙
 [esbuild](https://github.com/evanw/esbuild) ∙
+[Gro](https://github.com/grogarden/gro) ∙
 [uvu](https://github.com/lukeed/uvu) ∙
 [TypeScript](https://github.com/microsoft/TypeScript) ∙
 [ESLint](https://github.com/eslint/eslint) ∙
 [Prettier](https://github.com/prettier/prettier) ∙
-[felt-ui](https://github.com/fuz-dev/fuz) ∙
-[@feltjs/util](https://github.com/feltjs/util) ∙
-[Gro](https://github.com/feltjs/gro)
+[Fuz](https://github.com/fuz-dev/fuz) ∙
+[@grogarden/util](https://github.com/grogarden/util)
 & [more](package.json)
 
 ## license [🐦](https://wikipedia.org/wiki/Free_and_open-source_software)
