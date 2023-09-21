@@ -1,5 +1,11 @@
 # @feltjs/felt-mural
 
+## 0.2.5
+
+### Patch Changes
+
+- cf0ac2b: fix deps
+
 ## 0.2.4
 
 ### Patch Changes
