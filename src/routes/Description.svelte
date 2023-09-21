@@ -2,7 +2,7 @@
 	<blockquote>
 		a proof-of-concept <a href="https://svelte.dev/">Svelte</a> component for collaborative drawing
 		using <a href="https://github.com/feltjs/felt-ui">felt-ui</a> and
-		<a href="https://github.com/feltjs/felt-server">felt-server</a>
+		<a href="https://github.com/feltjs/felt">felt</a>
 	</blockquote>
 	<p class="box">
 		<code

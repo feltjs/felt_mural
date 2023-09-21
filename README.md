@@ -2,10 +2,10 @@
 
 > a proof-of-concept Svelte component for collaborative drawing using
 > [felt-ui](https://github.com/feltjs/felt-ui) and
-> [felt-server](https://github.com/feltjs/felt-server)
+> [felt](https://github.com/feltjs/felt)
 
 `Mural` is a proof-of-concept demonstrating
-how [felt-server](https://github.com/feltjs/felt-server)
+how [felt](https://github.com/feltjs/felt)
 can be leveraged by any web frontend, including static sites,
 to create collaborative experiences scoped to the people in your Felt communities.
 Eventually we hope to make this a polished production-ready tool,
