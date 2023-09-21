@@ -1,7 +1,7 @@
 # @feltjs/felt-mural
 
 > a proof-of-concept Svelte component for collaborative drawing using
-> [felt-ui](https://github.com/feltjs/felt-ui) and
+> [felt-ui](https://github.com/fuz-dev/fuz) and
 > [felt](https://github.com/feltjs/felt)
 
 `Mural` is a proof-of-concept demonstrating
@@ -68,7 +68,7 @@ gro deploy
 [TypeScript](https://github.com/microsoft/TypeScript) ∙
 [ESLint](https://github.com/eslint/eslint) ∙
 [Prettier](https://github.com/prettier/prettier) ∙
-[felt-ui](https://github.com/feltjs/felt-ui) ∙
+[felt-ui](https://github.com/fuz-dev/fuz) ∙
 [@feltjs/util](https://github.com/feltjs/util) ∙
 [Gro](https://github.com/feltjs/gro)
 & [more](package.json)
