@@ -4,10 +4,10 @@
 	import {setContext} from 'svelte';
 	import Breadcrumbs from '@fuz.dev/fuz/Breadcrumbs.svelte';
 
-	import LibraryMenu from '$routes/library/LibraryMenu.svelte';
-	import {libraryItemsByName, libraryItems} from '$routes/library/items';
+	import LibraryMenu from '@fuz.dev/library/LibraryMenu.svelte';
+	import {libraryItemsByName, libraryItems} from '@fuz.dev/library/items';
 	import FeltFooter from '$routes/FeltFooter.svelte';
-	import LibraryPanel from '$routes/library/LibraryPanel.svelte';
+	import LibraryPanel from '@fuz.dev/library/LibraryPanel.svelte';
 	import Description from '$routes/Description.svelte';
 
 	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);

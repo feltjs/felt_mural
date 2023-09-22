@@ -2,8 +2,8 @@
 	import {round} from '@grogarden/util/maths.js';
 
 	import Scaled from '$lib/Scaled.svelte';
-	import CodeExample from '$routes/library/CodeExample.svelte';
-	import LibraryItem from '$routes/library/LibraryItem.svelte';
+	import CodeExample from '@fuz.dev/library/CodeExample.svelte';
+	import LibraryItem from '@fuz.dev/library/LibraryItem.svelte';
 
 	const LIBRARY_ITEM_NAME = 'Scaled'; // TODO should be item, from context?
 
