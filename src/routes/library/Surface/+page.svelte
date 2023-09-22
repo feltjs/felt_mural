@@ -7,7 +7,7 @@
 	import Scaled from '$lib/Scaled.svelte';
 	import MuralItem from '$lib/MuralItem.svelte';
 	import CodeExample from '@fuz.dev/library/CodeExample.svelte';
-	import LibraryItem from '@fuz.dev/library//LibraryItem.svelte';
+	import LibraryItem from '@fuz.dev/library/libraryItem.svelte';
 
 	const LIBRARY_ITEM_NAME = 'Surface';
 

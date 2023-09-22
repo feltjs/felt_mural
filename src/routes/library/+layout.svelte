@@ -17,6 +17,8 @@
 
 	// TODO hacky to avoid a circular dependency problem
 	setContext('libraryItemsByName', libraryItemsByName);
+
+	// TODO BLOCK what of this can be extracted?
 </script>
 
 <div class="layout width_md">
