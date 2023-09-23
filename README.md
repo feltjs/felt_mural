@@ -1,7 +1,8 @@
 # @feltjs/felt-mural
 
 > a proof-of-concept Svelte component for collaborative drawing using
-> [Felt](https://github.com/feltjs/felt)
+> [Felt](https://github.com/feltjs/felt) 🎨
+> [mural.felt.dev](https://mural.felt.dev/)
 
 `Mural` is a proof-of-concept demonstrating
 how [felt](https://github.com/feltjs/felt)
