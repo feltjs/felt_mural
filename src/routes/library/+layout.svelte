@@ -28,7 +28,7 @@
 </script>
 
 <main>
-	<nav><Breadcrumb>🧶</Breadcrumb></nav>
+	<nav><Breadcrumb>💚</Breadcrumb></nav>
 	<div class="layout width_md">
 		<div class="menu_wrapper">
 			<div class="box">
@@ -49,7 +49,7 @@
 			<LibraryFooter {pkg_repo_url} {pkg_org_url} {pkg_website_url} {pkg_website_name} />
 		</section>
 		<section class="box">
-			<Breadcrumb>🧶</Breadcrumb>
+			<Breadcrumb>💚</Breadcrumb>
 		</section>
 	</div>
 </main>

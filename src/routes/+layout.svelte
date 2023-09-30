@@ -9,7 +9,6 @@
 	import Contextmenu from '@fuz.dev/fuz_contextmenu/Contextmenu.svelte';
 	import {create_contextmenu} from '@fuz.dev/fuz_contextmenu/contextmenu.js';
 
-	import Nav from '$routes/Nav.svelte';
 	import Settings from '$routes/Settings.svelte';
 
 	const contextmenu = create_contextmenu();
@@ -32,10 +31,7 @@
 />
 
 <Themed>
-	<main>
-		<Nav />
-		<slot />
-	</main>
+	<slot />
 	<Contextmenu {contextmenu} />
 	{#if showSettings}
 		<Dialog on:close={() => (showSettings = false)}>
@@ -45,12 +41,3 @@
 		</Dialog>
 	{/if}
 </Themed>
-
-<style>
-	main {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-</style>
