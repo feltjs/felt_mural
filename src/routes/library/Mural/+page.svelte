@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type {Writable} from 'svelte/store';
 	import {round} from '@grogarden/util/maths.js';
+	import TomeDetails from '@fuz.dev/fuz_library/TomeDetails.svelte';
+	import Code from '@fuz.dev/fuz_code/Code.svelte';
+	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
 	import type {SvgItem} from '$lib/item';
 	import Mural from '$lib/Mural.svelte';
-	import CodeExample from '@fuz.dev/library/CodeExample.svelte';
-	import LibraryItem from '@fuz.dev/library/LibraryItem.svelte';
 
 	// TODO fix responsive width
 
 	const LIBRARY_ITEM_NAME = 'Mural';
+	const tome = get_tome(LIBRARY_ITEM_NAME);
 
 	// user options
 	const WIDTH = 750;
@@ -41,12 +43,12 @@
 	let items: Array<Writable<SvgItem>> = [];
 </script>
 
-<LibraryItem name={LIBRARY_ITEM_NAME}>
+<TomeDetails {tome}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
 		<Mural bind:items {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
 		<section>
-			<CodeExample
-				code={`<Mural
+			<Code
+				content={`<Mural
 	width="${width}px"
 	height="${height}px"
 	scale={${scale && round(scale, 3)}}
@@ -89,7 +91,7 @@
 			</form>
 		</section>
 	</div>
-</LibraryItem>
+</TomeDetails>
 
 <style>
 	button {

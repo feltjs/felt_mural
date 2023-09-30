@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '@fuz.dev/fuz/style.css';
 	import '@fuz.dev/fuz/theme.css';
+	import '@fuz.dev/fuz_code/prism.css'; // TODO maybe import from Code?
 	import Themed from '@fuz.dev/fuz/Themed.svelte';
 	import Dialog from '@fuz.dev/fuz_dialog/Dialog.svelte';
 	import Contextmenu from '@fuz.dev/fuz_contextmenu/Contextmenu.svelte';

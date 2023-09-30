@@ -1,15 +1,17 @@
 <script lang="ts">
 	import {writable, type Writable} from 'svelte/store';
 	import {round} from '@grogarden/util/maths.js';
+	import Code from '@fuz.dev/fuz_code/Code.svelte';
+	import TomeDetails from '@fuz.dev/fuz_library/TomeDetails.svelte';
+	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
 	import {createCircle, updateItemData, type SvgItem} from '$lib/item';
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
 	import MuralItem from '$lib/MuralItem.svelte';
-	import CodeExample from '@fuz.dev/library/CodeExample.svelte';
-	import LibraryItem from '@fuz.dev/library/LibraryItem.svelte';
 
 	const LIBRARY_ITEM_NAME = 'Surface';
+	const tome = get_tome(LIBRARY_ITEM_NAME);
 
 	// user options
 	const WIDTH = 512;
@@ -61,7 +63,7 @@
 	};
 </script>
 
-<LibraryItem name={LIBRARY_ITEM_NAME}>
+<TomeDetails {tome}>
 	<div class="prose">
 		<Scaled {width} {height} bind:scale>
 			<div
@@ -90,8 +92,8 @@
 			</div>
 		</Scaled>
 		<section>
-			<CodeExample
-				code={`<Scaled
+			<Code
+				content={`<Scaled
 	width="${width}px"
 	height="${height}px"
 >
@@ -130,7 +132,7 @@
 			</label>
 		</section>
 	</div>
-</LibraryItem>
+</TomeDetails>
 
 <style>
 	.surface-wrapper {
