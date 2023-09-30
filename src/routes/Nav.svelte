@@ -1,23 +1,23 @@
 <script lang="ts">
 	import {page} from '$app/stores';
-	import Breadcrumbs from '@fuz.dev/fuz/Breadcrumbs.svelte';
+	import Breadcrumb from '@fuz.dev/fuz_library/Breadcrumb.svelte';
 
-	// TODO rename? `PageNav`? `SiteNav`? `Breadcrumbs`?
+	// TODO rename? `PageNav`? `SiteNav`? `Breadcrumb`?
 
-	// TODO this could be a prop passed by `Breadcrumbs`, is commonly needed
+	// TODO this could be a prop passed by `Breadcrumb`, is commonly needed
 	$: root = $page.url.pathname === '/';
 </script>
 
 <!-- TODO probably change to ul/li once styles are right -->
 
 <nav class:root>
-	<Breadcrumbs>
+	<Breadcrumb>
 		{#if root}
 			<span>@feltjs/felt-mural</span>
 		{:else}
 			<span class="heart">💚</span>
 		{/if}
-	</Breadcrumbs>
+	</Breadcrumb>
 </nav>
 
 <style>

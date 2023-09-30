@@ -2,14 +2,14 @@
 	import '@fuz.dev/fuz/style.css';
 	import '@fuz.dev/fuz/theme.css';
 	import Themed from '@fuz.dev/fuz/Themed.svelte';
-	import Dialog from '@fuz.dev/fuz/Dialog.svelte';
-	import Contextmenu from '@fuz.dev/fuz/Contextmenu.svelte';
-	import {createContextmenu} from '@fuz.dev/fuz/contextmenu.js';
+	import Dialog from '@fuz.dev/fuz_dialog/Dialog.svelte';
+	import Contextmenu from '@fuz.dev/fuz_contextmenu/Contextmenu.svelte';
+	import {create_contextmenu} from '@fuz.dev/fuz_contextmenu/contextmenu.js';
 
 	import Nav from '$routes/Nav.svelte';
 	import Settings from '$routes/Settings.svelte';
 
-	const contextmenu = createContextmenu();
+	const contextmenu = create_contextmenu();
 
 	let showSettings = false;
 </script>

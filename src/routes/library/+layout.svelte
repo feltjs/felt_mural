@@ -2,13 +2,17 @@
 	import {page} from '$app/stores';
 	import 'prismjs/themes/prism.min.css';
 	import {setContext} from 'svelte';
-	import Breadcrumbs from '@fuz.dev/fuz/Breadcrumbs.svelte';
+	import Breadcrumb from '@fuz.dev/fuz_library/Breadcrumb.svelte';
+	import LibraryMenu from '@fuz.dev/fuz_library/LibraryMenu.svelte';
+	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
+	import LibraryPanel from '@fuz.dev/fuz_library/LibraryPanel.svelte';
 
-	import LibraryMenu from '@fuz.dev/library/LibraryMenu.svelte';
-	import {libraryItemsByName, libraryItems} from '@fuz.dev/library/items';
 	import FeltFooter from '$routes/FeltFooter.svelte';
-	import LibraryPanel from '@fuz.dev/library/LibraryPanel.svelte';
 	import Description from '$routes/Description.svelte';
+
+	libraryItemsByName;
+	libraryItems;
+	set_tomes();
 
 	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);
 	$: itemsRelatedToSelected = selectedItem?.related?.map((r) => libraryItemsByName.get(r)!);
@@ -40,7 +44,7 @@
 		<FeltFooter />
 	</section>
 	<section class="box">
-		<Breadcrumbs>💚</Breadcrumbs>
+		<Breadcrumb>💚</Breadcrumb>
 	</section>
 </div>
 
