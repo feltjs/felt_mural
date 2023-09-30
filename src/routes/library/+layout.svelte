@@ -7,6 +7,7 @@
 	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
 
 	import {tomes} from '$routes/library/tomes.js';
+	import package_json from '../../static/.well-known/package.json';
 
 	const tomes_by_name = new Map(tomes.map((t) => [t.name, t]));
 	set_tomes(tomes_by_name);
