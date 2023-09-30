@@ -19,12 +19,12 @@
 	// TODO factor this code out and publish the layout
 
 	// TODO BLOCK source from package_json
-	const pkg_npm_url = 'https://npmjs.com/package/@fuz.dev/fuz_library';
-	const pkg_name = '@fuz.dev/fuz_library';
-	const pkg_repo_url = 'https://github.com/fuz-dev/fuz_library';
-	const pkg_org_url = 'https://github.com/fuz-dev';
-	const pkg_website_url = 'https://www.fuz.dev/';
-	const pkg_website_name = 'fuz.dev';
+	const pkg_npm_url = 'https://npmjs.com/package/@feltjs/felt-mural';
+	const pkg_name = '@feltjs/felt-mural';
+	const pkg_repo_url = 'https://github.com/feltjs/felt-mural';
+	const pkg_org_url = 'https://github.com/feltjs';
+	const pkg_website_url = 'https://www.felt.dev/';
+	const pkg_website_name = 'mural.felt.dev';
 </script>
 
 <main>
