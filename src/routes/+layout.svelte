@@ -13,7 +13,7 @@
 
 	const contextmenu = create_contextmenu();
 
-	let showSettings = false;
+	let show_settings = false;
 </script>
 
 <svelte:head>
@@ -21,20 +21,29 @@
 </svelte:head>
 
 <svelte:body
-	use:contextmenu.action={{
-		content: 'Settings',
-		icon: '?',
-		run: () => {
-			showSettings = true;
+	use:contextmenu.action={[
+		{
+			content: 'Settings',
+			icon: '?',
+			run: () => {
+				show_settings = true;
+			},
 		},
-	}}
+		{
+			content: 'Reload',
+			icon: '⟳',
+			run: () => {
+				location.reload();
+			},
+		},
+	]}
 />
 
 <Themed>
 	<slot />
 	<Contextmenu {contextmenu} />
-	{#if showSettings}
-		<Dialog on:close={() => (showSettings = false)}>
+	{#if show_settings}
+		<Dialog on:close={() => (show_settings = false)}>
 			<div class="pane">
 				<Settings />
 			</div>
