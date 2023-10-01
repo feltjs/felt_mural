@@ -5,9 +5,14 @@
 	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
 	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
 	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
+	import {parse_package_meta} from '@fuz.dev/fuz_library/package.js';
 
 	import {tomes} from '$routes/library/tomes.js';
 	import package_json from '../../static/.well-known/package.json';
+
+	// TODO SvelteKit warns about this but we put `/static` in `/src` because of what it's saying,
+	/// maybe change to import as the first item from `packages`
+	const pkg = parse_package_meta(package_json.homepage, package_json);
 
 	const tomes_by_name = new Map(tomes.map((t) => [t.name, t]));
 	set_tomes(tomes_by_name);
@@ -18,14 +23,6 @@
 		.filter(Boolean);
 
 	// TODO factor this code out and publish the layout
-
-	// TODO BLOCK source from package_json
-	const pkg_npm_url = 'https://npmjs.com/package/@feltjs/felt-mural';
-	const pkg_name = '@feltjs/felt-mural';
-	const pkg_repo_url = 'https://github.com/feltjs/felt-mural';
-	const pkg_org_url = 'https://github.com/feltjs';
-	const pkg_website_url = 'https://www.felt.dev/';
-	const pkg_website_name = 'mural.felt.dev';
 </script>
 
 <main>
@@ -43,11 +40,10 @@
 				</div>
 			</div>
 		</div>
-		<LibraryHeader {pkg_npm_url} {pkg_name} {pkg_repo_url} />
-
+		<LibraryHeader {pkg} />
 		<slot />
 		<section class="box">
-			<LibraryFooter {pkg_repo_url} {pkg_org_url} {pkg_website_url} {pkg_website_name} />
+			<LibraryFooter {pkg} />
 		</section>
 		<section class="box">
 			<Breadcrumb>💚</Breadcrumb>

@@ -2,11 +2,15 @@
   "name": "@feltjs/felt-mural",
   "description": "a proof-of-concept Svelte component for collaborative drawing using Felt",
   "version": "0.2.5",
-  "type": "module",
   "homepage": "https://mural.felt.dev/",
   "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feltjs/felt-mural.git"
+  },
+  "type": "module",
   "engines": {
-    "node": ">=20.5"
+    "node": ">=20.7"
   },
   "scripts": {
     "start": "gro dev",
