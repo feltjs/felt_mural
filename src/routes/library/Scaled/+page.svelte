@@ -1,11 +1,13 @@
 <script lang="ts">
 	import {round} from '@grogarden/util/maths.js';
+	import Code from '@fuz.dev/fuz_code/Code.svelte';
+	import TomeDetails from '@fuz.dev/fuz_library/TomeDetails.svelte';
 
 	import Scaled from '$lib/Scaled.svelte';
-	import CodeExample from '$routes/library/CodeExample.svelte';
-	import LibraryItem from '$routes/library/LibraryItem.svelte';
+	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
 	const LIBRARY_ITEM_NAME = 'Scaled'; // TODO should be item, from context?
+	const tome = get_tome(LIBRARY_ITEM_NAME);
 
 	// user options
 	const MAX_WIDTH = 1280;
@@ -30,10 +32,10 @@
 	const EXAMPLE_SIZE = 300;
 </script>
 
-<LibraryItem name={LIBRARY_ITEM_NAME}>
+<TomeDetails {tome}>
 	<section>
-		<CodeExample
-			code={`<Scaled
+		<Code
+			content={`<Scaled
 	width={${width}}
 	height={${height}}
 >
@@ -107,7 +109,7 @@
 			>reset state</button
 		>
 	</form>
-</LibraryItem>
+</TomeDetails>
 
 <style>
 	.surface-wrapper {

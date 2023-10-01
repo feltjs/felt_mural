@@ -1,56 +1,72 @@
 <script lang="ts">
 	import {page} from '$app/stores';
-	import 'prismjs/themes/prism.min.css';
-	import {setContext} from 'svelte';
-	import Breadcrumbs from '@fuz.dev/fuz/Breadcrumbs.svelte';
+	import Breadcrumb from '@fuz.dev/fuz_library/Breadcrumb.svelte';
+	import LibraryMenu from '@fuz.dev/fuz_library/LibraryMenu.svelte';
+	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
+	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
+	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
+	import {parse_package_meta} from '@fuz.dev/fuz_library/package.js';
 
-	import LibraryMenu from '$routes/library/LibraryMenu.svelte';
-	import {libraryItemsByName, libraryItems} from '$routes/library/items';
-	import FeltFooter from '$routes/FeltFooter.svelte';
-	import LibraryPanel from '$routes/library/LibraryPanel.svelte';
-	import Description from '$routes/Description.svelte';
+	import {tomes} from '$routes/library/tomes.js';
+	import package_json from '../../static/.well-known/package.json';
 
-	$: selectedItem = libraryItems.find((c) => c.pathname === $page.url.pathname);
-	$: itemsRelatedToSelected = selectedItem?.related?.map((r) => libraryItemsByName.get(r)!);
+	// TODO SvelteKit warns about this but we put `/static` in `/src` because of what it's saying,
+	/// maybe change to import as the first item from `packages`
+	const pkg = parse_package_meta(package_json.homepage, package_json);
 
-	// TODO this code needs to be moved into `Library`
+	const tomes_by_name = new Map(tomes.map((t) => [t.name, t]));
+	set_tomes(tomes_by_name);
 
-	// TODO hacky to avoid a circular dependency problem
-	setContext('libraryItemsByName', libraryItemsByName);
+	$: selected_tome = tomes.find((c) => c.pathname === $page.url.pathname);
+	$: tomes_related_to_selected = selected_tome?.related
+		?.map((r) => tomes_by_name.get(r)!)
+		.filter(Boolean);
+
+	// TODO factor this code out and publish the layout
 </script>
 
-<div class="layout width_md">
-	<div class="menu-wrapper">
-		<div class="menu width_sm">
-			<LibraryMenu items={libraryItems} />
-			{#if itemsRelatedToSelected}
-				<LibraryMenu items={itemsRelatedToSelected} let:category>
-					<h6>related {category}</h6>
-				</LibraryMenu>
-			{/if}
+<main>
+	<nav><Breadcrumb>💚</Breadcrumb></nav>
+	<div class="layout width_md">
+		<div class="menu_wrapper">
+			<div class="box">
+				<div class="menu width_sm">
+					<LibraryMenu {tomes} />
+					{#if tomes_related_to_selected}
+						<LibraryMenu tomes={tomes_related_to_selected} let:category>
+							<h6>related {category}</h6>
+						</LibraryMenu>
+					{/if}
+				</div>
+			</div>
 		</div>
+		<LibraryHeader {pkg} />
+		<slot />
+		<section class="box">
+			<LibraryFooter {pkg} />
+		</section>
+		<section class="box">
+			<Breadcrumb>💚</Breadcrumb>
+		</section>
 	</div>
-	<LibraryPanel>
-		<Description />
-	</LibraryPanel>
-	<slot />
-	<section class="box">
-		<FeltFooter />
-	</section>
-	<section class="box">
-		<Breadcrumbs>💚</Breadcrumbs>
-	</section>
-</div>
+</main>
 
 <style>
-	.layout {
+	main {
+		width: 100%;
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding-bottom: var(--spacing_xl5);
 	}
-	.menu-wrapper {
+	.layout {
+		position: relative;
+	}
+	nav {
+		font-size: var(--size_xl);
+	}
+	.menu_wrapper {
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -62,7 +78,7 @@
 		top: 0;
 	}
 	@media (max-width: 1200px) {
-		.menu-wrapper {
+		.menu_wrapper {
 			position: relative;
 			transform: none;
 			margin-bottom: var(--spacing_xl3);

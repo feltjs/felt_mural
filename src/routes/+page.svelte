@@ -1,25 +1,44 @@
 <script lang="ts">
 	import {base} from '$app/paths';
+	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
+	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
+	import {parse_package_meta} from '@fuz.dev/fuz_library/package.js';
 
-	import Description from '$routes/Description.svelte';
-	import FeltFooter from '$routes/FeltFooter.svelte';
+	import package_json from '../static/.well-known/package.json';
+
+	// TODO cache in context
+	// TODO SvelteKit warns about this but we put `/static` in `/src` because of what it's saying,
+	/// maybe change to import as the first item from `packages`
+	const pkg = parse_package_meta(package_json.homepage, package_json);
 </script>
 
-<div class="width_md">
-	<section>
-		<div class="panel padded_md">
-			<Description />
-		</div>
-	</section>
-	<section>
-		<a class="library-link panel" href="{base}/library">library</a>
-	</section>
-	<section>
-		<FeltFooter />
-	</section>
-</div>
+<main class="box width_full">
+	<div class="box width_md">
+		<section class="box">
+			<LibraryHeader {pkg} />
+		</section>
+		<section class="prose">
+			<blockquote class="width_sm text_align_center">
+				this is a demo not a polished library,<br />see
+				<a href="https://github.com/feltjs/felt-mural">the readme</a> for details
+			</blockquote>
+		</section>
+		<section>
+			<a class="library-link panel" href="{base}/library">library</a>
+		</section>
+		<section>
+			<LibraryFooter {pkg} />
+		</section>
+	</div>
+</main>
 
 <style>
+	main {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	section {
 		padding: var(--spacing_xl2);
 		display: flex;
