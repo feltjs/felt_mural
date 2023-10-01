@@ -5,13 +5,9 @@
 > [mural.felt.dev](https://mural.felt.dev/)
 
 `Mural` is a proof-of-concept demonstrating
-how [felt](https://github.com/feltjs/felt)
+how [Felt](https://github.com/feltjs/felt)
 can be leveraged by any web frontend, including static sites,
-to create collaborative experiences scoped to the people in your Felt communities.
-Eventually we hope to make this a polished production-ready tool,
-but for now it's on the backburner.
-
-TODO: include a video demo
+to create realtime collaborative experiences scoped to the people in your hubs.
 
 deployed: [mural.felt.dev](https://mural.felt.dev/)
 
