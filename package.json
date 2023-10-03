@@ -1,7 +1,7 @@
 {
   "name": "@feltjs/felt-mural",
   "description": "a proof-of-concept Svelte component for collaborative drawing using Felt",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "homepage": "https://mural.felt.dev/",
   "license": "Unlicense",
   "repository": {

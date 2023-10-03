@@ -1,5 +1,11 @@
 # @feltjs/felt-mural
 
+## 0.3.0
+
+### Minor Changes
+
+- 0663566: upgrade @fuz.dev/fuz@0.72 from 0.70
+
 ## 0.2.5
 
 ### Patch Changes
