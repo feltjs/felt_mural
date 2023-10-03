@@ -58,13 +58,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-bottom: var(--spacing_xl5);
+		padding-bottom: var(--spacing_5);
 	}
 	.layout {
 		position: relative;
 	}
 	nav {
-		font-size: var(--size_xl);
+		font-size: var(--size_1);
 	}
 	.menu_wrapper {
 		position: absolute;
@@ -81,15 +81,15 @@
 		.menu_wrapper {
 			position: relative;
 			transform: none;
-			margin-bottom: var(--spacing_xl3);
+			margin-bottom: var(--spacing_3);
 		}
 	}
 	section {
-		padding: var(--spacing_xl2);
+		padding: var(--spacing_2);
 	}
 	h6 {
 		margin-bottom: var(--spacing_md);
-		margin-top: var(--spacing_xl3);
+		margin-top: var(--spacing_3);
 	}
 	h6:first-child {
 		margin-top: 0;

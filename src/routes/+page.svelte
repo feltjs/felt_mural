@@ -40,15 +40,15 @@
 		align-items: center;
 	}
 	section {
-		padding: var(--spacing_xl2);
+		padding: var(--spacing_2);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 	a.panel {
-		padding: var(--spacing_xl2);
+		padding: var(--spacing_2);
 	}
 	.library-link {
-		font-size: var(--size_xl3);
+		font-size: var(--size_3);
 	}
 </style>

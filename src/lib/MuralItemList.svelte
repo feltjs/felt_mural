@@ -19,6 +19,6 @@
 
 <style>
 	ul {
-		padding: var(--spacing_xl) 0;
+		padding: var(--spacing_1) 0;
 	}
 </style>

@@ -117,7 +117,7 @@
 		background-color: var(--bg);
 		width: var(--width);
 		height: var(--height);
-		font-size: var(--size_xl5);
+		font-size: var(--size_5);
 		font-family: var(--font_family_mono);
 		white-space: nowrap;
 		/* TODO fix this in the `Scaled` component? it's not needed in the `Surface` example though */
