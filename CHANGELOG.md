@@ -1,5 +1,11 @@
 # @feltjs/felt-mural
 
+## 0.3.1
+
+### Patch Changes
+
+- 05a41f8: publish $lib/package.ts
+
 ## 0.3.0
 
 ### Minor Changes
