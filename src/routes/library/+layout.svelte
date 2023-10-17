@@ -5,13 +5,11 @@
 	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
 	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
 	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
-	import {parse_package_meta} from '@fuz.dev/fuz_library/package.js';
+	import {parse_package_meta} from '@fuz.dev/fuz_library/package_meta.js';
 
 	import {tomes} from '$routes/library/tomes.js';
-	import package_json from '../../static/.well-known/package.json';
+	import {package_json} from '$lib/package.js';
 
-	// TODO SvelteKit warns about this but we put `/static` in `/src` because of what it's saying,
-	/// maybe change to import as the first item from `packages`
 	const pkg = parse_package_meta(package_json.homepage, package_json);
 
 	const tomes_by_name = new Map(tomes.map((t) => [t.name, t]));
