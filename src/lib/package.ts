@@ -6,6 +6,7 @@ export const package_json = {
 	name: '@feltjs/felt_mural',
 	description: 'a proof-of-concept Svelte component for collaborative drawing using Felt',
 	version: '0.4.0',
+	public: true,
 	homepage: 'https://mural.felt.dev/',
 	license: 'Unlicense',
 	repository: {type: 'git', url: 'git+https://github.com/feltjs/felt_mural.git'},
