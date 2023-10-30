@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.4.0
+
+### Minor Changes
+
+- fdbbad5: rename to felt_mural from felt-mural
+
 ## 0.3.1
 
 ### Patch Changes
