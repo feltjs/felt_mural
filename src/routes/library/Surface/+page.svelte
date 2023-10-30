@@ -2,7 +2,7 @@
 	import {writable, type Writable} from 'svelte/store';
 	import {round} from '@grogarden/util/maths.js';
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
-	import TomeDetails from '@fuz.dev/fuz_library/TomeDetails.svelte';
+	import TomeDetail from '@fuz.dev/fuz_library/TomeDetail.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
 	import {createCircle, updateItemData, type SvgItem} from '$lib/item';
@@ -63,8 +63,13 @@
 	};
 </script>
 
-<TomeDetails {tome}>
+<TomeDetail {tome}>
 	<div class="prose">
+		<div class="box spaced">
+			<blockquote>
+				⚠️ this is not a good abstraction for this usecase! it's quick and hacky
+			</blockquote>
+		</div>
 		<Scaled {width} {height} bind:scale>
 			<div
 				class="surface-wrapper"
@@ -132,7 +137,7 @@
 			</label>
 		</section>
 	</div>
-</TomeDetails>
+</TomeDetail>
 
 <style>
 	.surface-wrapper {

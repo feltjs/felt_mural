@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type {Readable} from 'svelte/store';
+
 	import {
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		DEFAULT_POLYLINE_FILL,

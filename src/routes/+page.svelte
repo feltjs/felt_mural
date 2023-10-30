@@ -24,8 +24,11 @@
 			</blockquote>
 		</section>
 		<section>
-			<a class="library-link panel" href="{base}/library">library</a>
+			<menu>
+				<a class="library_link panel" href="{base}/library">library</a>
+			</menu>
 		</section>
+		<section class="box"><a class="chip" href="{base}/about">about</a></section>
 		<section>
 			<LibraryFooter {pkg} />
 		</section>
@@ -48,7 +51,7 @@
 	a.panel {
 		padding: var(--spacing_2);
 	}
-	.library-link {
+	.library_link {
 		font-size: var(--size_3);
 	}
 </style>
