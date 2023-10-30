@@ -1,0 +1,259 @@
+{
+  "name": "@feltjs/felt_mural",
+  "description": "a proof-of-concept Svelte component for collaborative drawing using Felt",
+  "version": "0.4.1",
+  "public": true,
+  "homepage": "https://mural.felt.dev/",
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feltjs/felt_mural.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.7"
+  },
+  "scripts": {
+    "start": "gro dev",
+    "dev": "gro dev",
+    "build": "gro build",
+    "test": "gro test",
+    "deploy": "gro deploy"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@grogarden/util": "*",
+    "svelte": "*"
+  },
+  "devDependencies": {
+    "@changesets/changelog-git": "^0.1.14",
+    "@feltjs/eslint-config": "^0.4.1",
+    "@fuz.dev/fuz": "^0.77.1",
+    "@fuz.dev/fuz_code": "^0.4.2",
+    "@fuz.dev/fuz_contextmenu": "^0.5.1",
+    "@fuz.dev/fuz_dialog": "^0.4.2",
+    "@fuz.dev/fuz_library": "^0.17.0",
+    "@grogarden/gro": "^0.98.1",
+    "@grogarden/util": "^0.15.2",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.27.2",
+    "@sveltejs/package": "^2.2.2",
+    "@types/prismjs": "^1.26.2",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0",
+    "eslint-plugin-svelte": "^2.34.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
+    "prism-svelte": "^0.5.0",
+    "prismjs": "^1.29.0",
+    "svelte": "^4.2.2",
+    "svelte-check": "^3.5.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "uvu": "^0.5.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "@feltjs"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
+    "useTabs": true,
+    "printWidth": 100,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "useTabs": false
+        }
+      }
+    ]
+  },
+  "exports": {
+    "./item.js": {
+      "default": "./dist/item.js",
+      "types": "./dist/item.d.ts"
+    },
+    "./Mural.svelte": {
+      "svelte": "./dist/Mural.svelte",
+      "default": "./dist/Mural.svelte",
+      "types": "./dist/Mural.svelte.d.ts"
+    },
+    "./MuralItem.svelte": {
+      "svelte": "./dist/MuralItem.svelte",
+      "default": "./dist/MuralItem.svelte",
+      "types": "./dist/MuralItem.svelte.d.ts"
+    },
+    "./MuralItemList.svelte": {
+      "svelte": "./dist/MuralItemList.svelte",
+      "default": "./dist/MuralItemList.svelte",
+      "types": "./dist/MuralItemList.svelte.d.ts"
+    },
+    "./MuralItemListItem.svelte": {
+      "svelte": "./dist/MuralItemListItem.svelte",
+      "default": "./dist/MuralItemListItem.svelte",
+      "types": "./dist/MuralItemListItem.svelte.d.ts"
+    },
+    "./package.gen.js": {
+      "default": "./dist/package.gen.js",
+      "types": "./dist/package.gen.d.ts"
+    },
+    "./package.js": {
+      "default": "./dist/package.js",
+      "types": "./dist/package.d.ts"
+    },
+    "./Scaled.svelte": {
+      "svelte": "./dist/Scaled.svelte",
+      "default": "./dist/Scaled.svelte",
+      "types": "./dist/Scaled.svelte.d.ts"
+    },
+    "./Surface.svelte": {
+      "svelte": "./dist/Surface.svelte",
+      "default": "./dist/Surface.svelte",
+      "types": "./dist/Surface.svelte.d.ts"
+    }
+  },
+  "modules": {
+    "./item.js": {
+      "path": "item.ts",
+      "declarations": [
+        {
+          "name": "SvgItem",
+          "kind": "TypeAliasDeclaration"
+        },
+        {
+          "name": "ItemId",
+          "kind": "TypeAliasDeclaration"
+        },
+        {
+          "name": "SvgBaseItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "SvgPolylineItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "SvgCircleItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "parseItemPointsData",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "toPointsData",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "DEFAULT_POLYLINE_STROKE",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "DEFAULT_POLYLINE_STROKE_WIDTH",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "DEFAULT_POLYLINE_FILL",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "DEFAULT_POLYLINE_FILL_2",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "DEFAULT_CIRCLE_FILL",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "createPolyline",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "createCircle",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "parsers",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "updateItemData",
+          "kind": "VariableDeclaration"
+        },
+        {
+          "name": "MuralAction",
+          "kind": "TypeAliasDeclaration"
+        },
+        {
+          "name": "MuralBaseAction",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "AddItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "UpdateItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "RemoveItem",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "RemoveAllItems",
+          "kind": "InterfaceDeclaration"
+        },
+        {
+          "name": "UpdateItemData",
+          "kind": "TypeAliasDeclaration"
+        }
+      ]
+    },
+    "./Mural.svelte": {
+      "path": "Mural.svelte",
+      "declarations": []
+    },
+    "./MuralItem.svelte": {
+      "path": "MuralItem.svelte",
+      "declarations": []
+    },
+    "./MuralItemList.svelte": {
+      "path": "MuralItemList.svelte",
+      "declarations": []
+    },
+    "./MuralItemListItem.svelte": {
+      "path": "MuralItemListItem.svelte",
+      "declarations": []
+    },
+    "./package.gen.js": {
+      "path": "package.gen.ts",
+      "declarations": []
+    },
+    "./package.js": {
+      "path": "package.ts",
+      "declarations": [
+        {
+          "name": "package_json",
+          "kind": "VariableDeclaration"
+        }
+      ]
+    },
+    "./Scaled.svelte": {
+      "path": "Scaled.svelte",
+      "declarations": []
+    },
+    "./Surface.svelte": {
+      "path": "Surface.svelte",
+      "declarations": []
+    }
+  }
+}
