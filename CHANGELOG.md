@@ -1,4 +1,4 @@
-# @feltjs/felt-mural
+# @feltjs/felt_mural
 
 ## 0.3.1
 
@@ -35,29 +35,29 @@
 ### Patch Changes
 
 - d7db78b: add exports to package.json and upgrade gro
-  ([#5](https://github.com/feltjs/felt-mural/pull/5))
+  ([#5](https://github.com/feltjs/felt_mural/pull/5))
 
 ## 0.2.1
 
 - UX tweaks
-  ([#4](https://github.com/feltjs/felt-mural/pull/4))
+  ([#4](https://github.com/feltjs/felt_mural/pull/4))
 
 ## 0.2.0
 
 - **break**: rename API "entity" to "item" and fix various things
-  ([#3](https://github.com/feltjs/felt-mural/pull/3))
+  ([#3](https://github.com/feltjs/felt_mural/pull/3))
 
 ## 0.1.2
 
 - support darkmode
-  ([#2](https://github.com/feltjs/felt-mural/pull/2))
+  ([#2](https://github.com/feltjs/felt_mural/pull/2))
 
 ## 0.1.1
 
 - change to require deep imports
-  ([commit](https://github.com/feltjs/felt-mural/commit/f81ecf10bcea062359b6f9905a1e90075e580934))
+  ([commit](https://github.com/feltjs/felt_mural/commit/f81ecf10bcea062359b6f9905a1e90075e580934))
 
 ## 0.1.0
 
 - implement and publish
-  ([#1](https://github.com/feltjs/felt-mural/pull/1))
+  ([#1](https://github.com/feltjs/felt_mural/pull/1))

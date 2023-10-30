@@ -1,4 +1,4 @@
-# @feltjs/felt-mural
+# @feltjs/felt_mural
 
 > a proof-of-concept Svelte component for collaborative drawing using
 > [Felt](https://github.com/feltjs/felt) 🎨
@@ -14,12 +14,12 @@ deployed: [mural.felt.dev](https://mural.felt.dev/)
 ## usage
 
 ```bash
-npm i -D @feltjs/felt-mural
+npm i -D @feltjs/felt_mural
 ```
 
 ```ts
 // use deep imports:
-import Mural from '@feltjs/felt-mural/Mural.svelte';
+import Mural from '@feltjs/felt_mural/Mural.svelte';
 ```
 
 See [the library](https://mural.felt.dev/library) for early docs and demos,

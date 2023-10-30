@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<title>@feltjs/felt-mural</title>
+	<title>@feltjs/felt_mural</title>
 </svelte:head>
 
 <svelte:body

@@ -20,7 +20,7 @@
 		<section class="prose">
 			<blockquote class="width_sm text_align_center">
 				this is a demo not a polished library,<br />see
-				<a href="https://github.com/feltjs/felt-mural">the readme</a> for details
+				<a href="https://github.com/feltjs/felt_mural">the readme</a> for details
 			</blockquote>
 		</section>
 		<section>

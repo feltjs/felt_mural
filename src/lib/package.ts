@@ -3,12 +3,12 @@
 import type {PackageJson} from '@grogarden/gro/package_json.js';
 
 export const package_json = {
-	name: '@feltjs/felt-mural',
+	name: '@feltjs/felt_mural',
 	description: 'a proof-of-concept Svelte component for collaborative drawing using Felt',
 	version: '0.3.1',
 	homepage: 'https://mural.felt.dev/',
 	license: 'Unlicense',
-	repository: {type: 'git', url: 'git+https://github.com/feltjs/felt-mural.git'},
+	repository: {type: 'git', url: 'git+https://github.com/feltjs/felt_mural.git'},
 	type: 'module',
 	engines: {node: '>=20.7'},
 	scripts: {
