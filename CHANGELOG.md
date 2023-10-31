@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.5.0
+
+### Minor Changes
+
+- 1b2d9a5: rename to `Proper_Snakes`
+
 ## 0.4.1
 
 ### Patch Changes
