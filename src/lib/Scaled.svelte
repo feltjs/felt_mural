@@ -6,9 +6,9 @@
 	let clientWidth: number | null = null;
 	let clientHeight: number | null = null;
 
-	$: xRatio = clientWidth === null ? null : clientWidth / width;
-	$: yRatio = clientHeight === null ? null : clientHeight / height;
-	$: scale = xRatio === null ? 0 : Math.min(1, Math.min(xRatio, yRatio!));
+	$: x_ratio = clientWidth === null ? null : clientWidth / width;
+	$: y_ratio = clientHeight === null ? null : clientHeight / height;
+	$: scale = x_ratio === null ? 0 : Math.min(1, Math.min(x_ratio, y_ratio!));
 	$: transform = `scale3d(${scale}, ${scale}, ${scale})`;
 </script>
 

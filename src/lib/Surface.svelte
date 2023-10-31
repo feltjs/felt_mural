@@ -8,56 +8,56 @@
 	// TODO probably add events
 	export let scale = 1; // makes the pointer position calculations transform-scale-aware
 	export let pointing: boolean | undefined = undefined;
-	export let pointerDown: boolean | undefined = undefined;
-	export let pointerX: number | undefined = undefined;
-	export let pointerY: number | undefined = undefined;
-	export let cancelOnLeave = true;
+	export let pointer_down: boolean | undefined = undefined;
+	export let pointer_x: number | undefined = undefined;
+	export let pointer_y: number | undefined = undefined;
+	export let cancel_on_leave = true;
 
-	const updatePointerPosition = (clientX: number, clientY: number): void => {
+	const update_pointer_position = (clientX: number, clientY: number): void => {
 		const rect = el.getBoundingClientRect();
-		pointerX = (clientX - rect.left) / scale;
-		pointerY = (clientY - rect.top) / scale;
+		pointer_x = (clientX - rect.left) / scale;
+		pointer_y = (clientY - rect.top) / scale;
 	};
 
-	const onPointerdown = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointerdown = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey || e.button >= 3) return; // TODO how else to avoid breaking mouse back button on Chrome? doesn't happen on Firefox
 		swallow(e);
-		updatePointerPosition(e.clientX, e.clientY);
-		pointerDown = true;
+		update_pointer_position(e.clientX, e.clientY);
+		pointer_down = true;
 		focus();
 	};
-	const onPointerup = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointerup = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey || e.button >= 3) return; // TODO how else to avoid breaking mouse back button on Chrome? doesn't happen on Firefox
 		swallow(e);
-		updatePointerPosition(e.clientX, e.clientY);
-		pointerDown = false;
+		update_pointer_position(e.clientX, e.clientY);
+		pointer_down = false;
 	};
-	const onPointermove = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointermove = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey) return;
 		swallow(e);
-		updatePointerPosition(e.clientX, e.clientY);
+		update_pointer_position(e.clientX, e.clientY);
 	};
-	const onPointerenter = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointerenter = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey) return;
 		swallow(e);
-		updatePointerPosition(e.clientX, e.clientY);
+		update_pointer_position(e.clientX, e.clientY);
 		pointing = true;
 	};
-	const onPointerleave = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointerleave = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey) return;
 		swallow(e);
-		updatePointerPosition(e.clientX, e.clientY);
+		update_pointer_position(e.clientX, e.clientY);
 		pointing = false;
-		if (cancelOnLeave && pointerDown) {
-			pointerDown = false;
+		if (cancel_on_leave && pointer_down) {
+			pointer_down = false;
 			unfocus();
 		}
 	};
-	const onPointercancel = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
+	const on_pointercancel = (e: PointerEvent & {currentTarget: EventTarget & HTMLDivElement}) => {
 		if (e.shiftKey) return;
 		swallow(e);
-		if (pointerDown) {
-			pointerDown = false;
+		if (pointer_down) {
+			pointer_down = false;
 			unfocus();
 		}
 	};
@@ -81,12 +81,12 @@
 	tabindex="0"
 	role="button"
 	bind:this={el}
-	on:pointerdown={onPointerdown}
-	on:pointerup={onPointerup}
-	on:pointermove={onPointermove}
-	on:pointerenter={onPointerenter}
-	on:pointerleave={onPointerleave}
-	on:pointercancel={onPointercancel}
+	on:pointerdown={on_pointerdown}
+	on:pointerup={on_pointerup}
+	on:pointermove={on_pointermove}
+	on:pointerenter={on_pointerenter}
+	on:pointerleave={on_pointerleave}
+	on:pointercancel={on_pointercancel}
 >
 	<slot />
 </div>

@@ -4,11 +4,11 @@
 	import {
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		DEFAULT_POLYLINE_FILL,
-		type SvgItem,
+		type Svg_Item,
 		DEFAULT_POLYLINE_STROKE,
 	} from '$lib/item';
 
-	export let item: Readable<SvgItem>;
+	export let item: Readable<Svg_Item>;
 
 	$: ({hidden, pathLength, enableFill, fill, opacity} = $item);
 </script>

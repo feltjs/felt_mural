@@ -5,10 +5,10 @@
 	import TomeDetail from '@fuz.dev/fuz_library/TomeDetail.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
-	import {createCircle, updateItemData, type SvgItem} from '$lib/item';
+	import {create_circle, update_item_data, type Svg_Item} from '$lib/item';
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import MuralItem from '$lib/MuralItem.svelte';
+	import Mural_Item from '$lib/Mural_Item.svelte';
 
 	const LIBRARY_ITEM_NAME = 'Surface';
 	const tome = get_tome(LIBRARY_ITEM_NAME);
@@ -24,15 +24,15 @@
 	// surface props
 	let scale: number; // computed from the layout
 	let pointing: boolean | undefined;
-	let pointerDown: boolean | undefined;
-	let pointerX: number | undefined;
-	let pointerY: number | undefined;
+	let pointer_down: boolean | undefined;
+	let pointer_x: number | undefined;
+	let pointer_y: number | undefined;
 
 	const reset = () => {
 		// reset surface props
-		pointerDown = undefined;
-		pointerX = undefined;
-		pointerY = undefined;
+		pointer_down = undefined;
+		pointer_x = undefined;
+		pointer_y = undefined;
 		// dont set scale, it's computed from the layout
 
 		// reset user options
@@ -41,24 +41,24 @@
 		shadow = SHADOW;
 	};
 
-	const items: Array<Writable<SvgItem>> = [createCircle(0, 0, 10, '#7f7166')].map((e) =>
+	const items: Array<Writable<Svg_Item>> = [create_circle(0, 0, 10, '#7f7166')].map((e) =>
 		writable(e),
 	);
 
 	// TODO attach springs to the following items
 
-	$: updateItems(pointerDown, pointerX, pointerY);
+	$: updateItems(pointer_down, pointer_x, pointer_y);
 
 	const updateItems = (
-		pointerDown: boolean | undefined,
-		pointerX: number | undefined,
-		pointerY: number | undefined,
+		pointer_down: boolean | undefined,
+		pointer_x: number | undefined,
+		pointer_y: number | undefined,
 	) => {
 		const item = items[0];
-		updateItemData(item, {
-			cx: pointerX,
-			cy: pointerY,
-			fill: pointerDown ? '#397fc6' : '#7f7166',
+		update_item_data(item, {
+			cx: pointer_x,
+			cy: pointer_y,
+			fill: pointer_down ? '#397fc6' : '#7f7166',
 		});
 	};
 </script>
@@ -80,16 +80,16 @@
 				<Surface
 					{scale}
 					bind:pointing
-					bind:pointerDown
-					bind:pointerX
-					bind:pointerY
-					cancelOnLeave={false}
+					bind:pointer_down
+					bind:pointer_x
+					bind:pointer_y
+					cancel_on_leave={false}
 				>
 					<!-- TODO if we want pointer-interactive elements, should they be children of `Surface`? -->
-					{#if pointerX !== undefined && pointerY !== undefined}
+					{#if pointer_x !== undefined && pointer_y !== undefined}
 						<svg>
 							{#each items as item (item)}
-								<MuralItem {item} />
+								<Mural_Item {item} />
 							{/each}
 						</svg>
 					{/if}
@@ -105,18 +105,18 @@
 	<Surface
 		scale={${scale && round(scale, 3)}}
 		pointing={${pointing}}
-		pointerDown={${pointerDown}}
-		pointerX={${pointerX && round(pointerX, 1)}}
-		pointerY={${pointerY && round(pointerY, 1)}}
+		pointer_down={${pointer_down}}
+		pointer_x={${pointer_x && round(pointer_x, 1)}}
+		pointer_y={${pointer_y && round(pointer_y, 1)}}
 	/>
 </Scaled>`}
 			/>
 
 			<button
 				on:click={reset}
-				disabled={pointerDown === undefined &&
-					pointerX === undefined &&
-					pointerY === undefined &&
+				disabled={pointer_down === undefined &&
+					pointer_x === undefined &&
+					pointer_y === undefined &&
 					width === WIDTH &&
 					height === HEIGHT &&
 					shadow === SHADOW}>reset state</button

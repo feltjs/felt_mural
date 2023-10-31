@@ -3,12 +3,12 @@ import {round} from '@grogarden/util/maths.js';
 import type {Writable} from 'svelte/store';
 
 // TODO merge with felt (eventually, probably a core shared lib)
-export type SvgItem = SvgPolylineItem | SvgCircleItem;
+export type Svg_Item = Svg_Polyline_Item | Svg_Circle_Item;
 
-export type ItemId = Flavored<string, 'Item'>;
+export type Item_Id = Flavored<string, 'Item'>;
 
-export interface SvgBaseItem {
-	id: ItemId;
+export interface Svg_Base_Item {
+	id: Item_Id;
 	type: string;
 	fill?: string;
 	enableFill?: boolean;
@@ -16,7 +16,7 @@ export interface SvgBaseItem {
 	opacity?: number;
 }
 
-export interface SvgPolylineItem extends SvgBaseItem {
+export interface Svg_Polyline_Item extends Svg_Base_Item {
 	type: 'polyline';
 	points: string;
 	pointsData?: number[];
@@ -25,7 +25,7 @@ export interface SvgPolylineItem extends SvgBaseItem {
 	strokeWidth?: number;
 }
 
-export interface SvgCircleItem extends SvgBaseItem {
+export interface Svg_Circle_Item extends Svg_Base_Item {
 	type: 'circle';
 	cx: number;
 	cy: number;
@@ -34,7 +34,7 @@ export interface SvgCircleItem extends SvgBaseItem {
 	// TODO would be nice to have `enableFill` default to true for 'circle' but still not 'polyline'
 }
 
-export const parseItemPointsData = (points: string): number[] => {
+export const parse_item_points_data = (points: string): number[] => {
 	const data: number[] = [];
 	let char: string;
 	let processingX = true;
@@ -63,8 +63,8 @@ export const parseItemPointsData = (points: string): number[] => {
 	return data;
 };
 
-export const toPointsData = (item: SvgPolylineItem): number[] =>
-	item.pointsData || (item.pointsData = parseItemPointsData(item.points));
+export const to_points_data = (item: Svg_Polyline_Item): number[] =>
+	item.pointsData || (item.pointsData = parse_item_points_data(item.points));
 
 // TODO refactor these, maybe remove altogether
 export const DEFAULT_POLYLINE_STROKE = '#666666';
@@ -73,18 +73,18 @@ export const DEFAULT_POLYLINE_FILL = 'none';
 export const DEFAULT_POLYLINE_FILL_2 = '#c7beef';
 export const DEFAULT_CIRCLE_FILL = '#75a6d7';
 
-export const createPolyline = (): SvgPolylineItem => ({
+export const create_polyline = (): Svg_Polyline_Item => ({
 	id: crypto.randomUUID(),
 	type: 'polyline',
 	points: '',
 });
 
-export const createCircle = (
+export const create_circle = (
 	cx = 0,
 	cy = 0,
 	r = 25,
 	fill = DEFAULT_CIRCLE_FILL,
-): SvgCircleItem => ({
+): Svg_Circle_Item => ({
 	id: crypto.randomUUID(),
 	type: 'circle',
 	cx,
@@ -100,7 +100,7 @@ export const parsers = {
 	y: (value: number): number => round(value, 1),
 };
 
-export const updateItemData = (item: Writable<SvgItem>, partial: UpdateItemData): void =>
+export const update_item_data = (item: Writable<Svg_Item>, partial: Update_Item_Data): void =>
 	item.update(($e) => {
 		const updated = {...$e};
 		for (const key in partial) {
@@ -113,7 +113,7 @@ export const updateItemData = (item: Writable<SvgItem>, partial: UpdateItemData)
 				// pull off all non-standard action-only properties like `appendPoints`,
 				// and generically pass through all others
 				if (key === 'appendPoints') {
-					const u = updated as SvgPolylineItem;
+					const u = updated as Svg_Polyline_Item;
 					for (let i = 0; i < value.length; i += 2) {
 						u.points += ' ' + value[i] + ',' + value[i + 1];
 						u.pointsData?.push(value[i], value[i + 1]);
@@ -127,27 +127,27 @@ export const updateItemData = (item: Writable<SvgItem>, partial: UpdateItemData)
 	});
 
 // TODO where do these belong? should they be more generic than `Mural`?
-export type MuralAction = AddItem | UpdateItem | RemoveItem | RemoveAllItems;
-export interface MuralBaseAction {
+export type Mural_Action = Add_Item | Update_Item | Remove_Item | Remove_All_Items;
+export interface Mural_Base_Action {
 	type: string;
 }
-export interface AddItem extends MuralBaseAction {
+export interface Add_Item extends Mural_Base_Action {
 	type: 'addItem';
-	item: SvgItem;
+	item: Svg_Item;
 }
-export interface UpdateItem extends MuralBaseAction {
+export interface Update_Item extends Mural_Base_Action {
 	type: 'updateItem';
-	id: ItemId;
-	data: UpdateItemData;
+	id: Item_Id;
+	data: Update_Item_Data;
 }
-export interface RemoveItem extends MuralBaseAction {
+export interface Remove_Item extends Mural_Base_Action {
 	type: 'removeItem';
-	id: ItemId;
+	id: Item_Id;
 }
-export interface RemoveAllItems extends MuralBaseAction {
+export interface Remove_All_Items extends Mural_Base_Action {
 	type: 'removeAllItems';
 }
 
-export type UpdateItemData =
-	| Partial<Exclude<SvgItem, SvgPolylineItem>>
-	| (Partial<SvgPolylineItem> & {appendPoints?: number[]});
+export type Update_Item_Data =
+	| Partial<Exclude<Svg_Item, Svg_Polyline_Item>>
+	| (Partial<Svg_Polyline_Item> & {appendPoints?: number[]});

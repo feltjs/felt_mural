@@ -4,20 +4,20 @@
 	import {round} from '@grogarden/util/maths.js';
 
 	import {
-		type SvgItem,
+		type Svg_Item,
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		DEFAULT_POLYLINE_FILL,
 		DEFAULT_POLYLINE_FILL_2,
-		type MuralAction,
-		toPointsData,
+		type Mural_Action,
+		to_points_data,
 	} from '$lib/item';
 
-	export let item: Writable<SvgItem>;
-	export let itemSelection: Writable<Writable<SvgItem> | null>;
+	export let item: Writable<Svg_Item>;
+	export let itemSelection: Writable<Writable<Svg_Item> | null>;
 
 	$: selected = $itemSelection === item;
 
-	const dispatch = createEventDispatcher<{action: MuralAction}>();
+	const dispatch = createEventDispatcher<{action: Mural_Action}>();
 
 	$: ({enableFill, fill, hidden, opacity} = $item);
 	$: finalFill = enableFill ? fill ?? DEFAULT_POLYLINE_FILL : undefined;
@@ -157,7 +157,7 @@
 			<small>stroke-width</small>
 		</label>
 		<span class="content">
-			{toPointsData($item).length}
+			{to_points_data($item).length}
 			<br />
 			<small>points</small>
 		</span>

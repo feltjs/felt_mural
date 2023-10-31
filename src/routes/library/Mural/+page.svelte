@@ -5,7 +5,7 @@
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
-	import type {SvgItem} from '$lib/item';
+	import type {Svg_Item} from '$lib/item';
 	import Mural from '$lib/Mural.svelte';
 
 	// TODO fix responsive width
@@ -23,15 +23,15 @@
 
 	// surface props
 	let scale: number; // computed from the layout
-	let pointerDown: boolean | undefined;
-	let pointerX: number | undefined;
-	let pointerY: number | undefined;
+	let pointer_down: boolean | undefined;
+	let pointer_x: number | undefined;
+	let pointer_y: number | undefined;
 
 	const reset = () => {
 		// reset surface props
-		pointerDown = undefined;
-		pointerX = undefined;
-		pointerY = undefined;
+		pointer_down = undefined;
+		pointer_x = undefined;
+		pointer_y = undefined;
 		// dont set scale, it's computed from the layout
 
 		// reset user options
@@ -40,23 +40,23 @@
 		mural_bg = undefined;
 	};
 
-	let items: Array<Writable<SvgItem>> = [];
+	let items: Array<Writable<Svg_Item>> = [];
 </script>
 
 <TomeDetail {tome}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
-		<Mural bind:items {width} {height} bind:scale bind:pointerDown bind:pointerX bind:pointerY />
+		<Mural bind:items {width} {height} bind:scale bind:pointer_down bind:pointer_x bind:pointer_y />
 		<section>
 			<Code
 				content={`<Mural
 	width="${width}px"
 	height="${height}px"
 	scale={${scale && round(scale, 3)}}
-	pointerX={${pointerX && round(pointerX, 1)}}
-	pointerY={${pointerY && round(pointerY, 1)}}
-	pointerDown={${pointerDown}}
+	pointer_x={${pointer_x && round(pointer_x, 1)}}
+	pointer_y={${pointer_y && round(pointer_y, 1)}}
+	pointer_down={${pointer_down}}
 >
-	<MuralItemList
+	<Mural_Item_List
 		items={[ ... ]}
 	/>
 </Mural>`}
@@ -80,9 +80,9 @@
 					<button
 						type="button"
 						on:click={reset}
-						disabled={pointerDown === undefined &&
-							pointerX === undefined &&
-							pointerY === undefined &&
+						disabled={pointer_down === undefined &&
+							pointer_x === undefined &&
+							pointer_y === undefined &&
 							width === WIDTH &&
 							height === HEIGHT &&
 							mural_bg === undefined}>reset settings</button

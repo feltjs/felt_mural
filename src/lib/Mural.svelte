@@ -4,24 +4,24 @@
 
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
-	import MuralItem from '$lib/MuralItem.svelte';
-	import MuralItemList from '$lib/MuralItemList.svelte';
+	import Mural_Item from '$lib/Mural_Item.svelte';
+	import Mural_Item_List from '$lib/Mural_Item_List.svelte';
 	import {
-		createCircle,
-		createPolyline,
+		create_circle,
+		create_polyline,
 		DEFAULT_POLYLINE_STROKE,
 		DEFAULT_POLYLINE_STROKE_WIDTH,
 		parsers,
-		toPointsData,
-		updateItemData,
-		type ItemId,
-		type SvgItem,
-		type MuralAction,
+		to_points_data,
+		update_item_data,
+		type Item_Id,
+		type Svg_Item,
+		type Mural_Action,
 	} from '$lib/item';
 
-	const dispatch = createEventDispatcher<{action: MuralAction}>();
+	const dispatch = createEventDispatcher<{action: Mural_Action}>();
 
-	export let items: Array<Writable<SvgItem>> = [];
+	export let items: Array<Writable<Svg_Item>> = [];
 	export let width: number;
 	export let height: number;
 	// TODO see `Surface` file comments,
@@ -30,17 +30,17 @@
 	// because we'll switch to SVG elements receiving the interaction events -
 	// unless we can use bubbling to do this automatically for us?
 	export let pointing: boolean | undefined = undefined;
-	export let pointerDown: boolean | undefined = undefined;
-	export let pointerX: number | undefined = undefined;
-	export let pointerY: number | undefined = undefined;
+	export let pointer_down: boolean | undefined = undefined;
+	export let pointer_x: number | undefined = undefined;
+	export let pointer_y: number | undefined = undefined;
 	export let scale: number | undefined = undefined;
 
-	const createItem = (): SvgItem | null => {
+	const createItem = (): Svg_Item | null => {
 		const itemData =
 			selectedBrush === 'pen' || selectedBrush === 'polyline'
-				? createPolyline()
+				? create_polyline()
 				: selectedBrush === 'circle'
-				? createCircle(pointerX, pointerY)
+				? create_circle(pointer_x, pointer_y)
 				: null;
 		if (!itemData) return null;
 		return itemData;
@@ -48,30 +48,30 @@
 
 	// hooks that can be overridden or externally bound for calling
 	export let addItem: (
-		list: Array<Writable<SvgItem>>,
-		item: Writable<SvgItem>,
-		id: ItemId,
-	) => Array<Writable<SvgItem>> = (list, item) => list.concat(item);
-	export let updateItem: <TItem extends SvgItem>(
+		list: Array<Writable<Svg_Item>>,
+		item: Writable<Svg_Item>,
+		id: Item_Id,
+	) => Array<Writable<Svg_Item>> = (list, item) => list.concat(item);
+	export let updateItem: <TItem extends Svg_Item>(
 		item: Writable<TItem>,
 		data: Partial<TItem>,
-	) => void = (item, data) => updateItemData(item, data as any); // TODO type hack
-	export let selectItemToDraw: (list: Array<Writable<SvgItem>>) => Writable<SvgItem> | undefined = (
-		list,
-	) => $itemSelection || list.at(-1);
+	) => void = (item, data) => update_item_data(item, data as any); // TODO type hack
+	export let selectItemToDraw: (
+		list: Array<Writable<Svg_Item>>,
+	) => Writable<Svg_Item> | undefined = (list) => $itemSelection || list.at(-1);
 	export let removeItem: (
-		list: Array<Writable<SvgItem>>,
-		item: Writable<SvgItem>,
-		id: ItemId,
-	) => Array<Writable<SvgItem>> = (list, item): Array<Writable<SvgItem>> =>
+		list: Array<Writable<Svg_Item>>,
+		item: Writable<Svg_Item>,
+		id: Item_Id,
+	) => Array<Writable<Svg_Item>> = (list, item): Array<Writable<Svg_Item>> =>
 		list.filter((e) => e !== item);
-	export let removeAllItems: (list: Array<Writable<SvgItem>>) => Array<Writable<SvgItem>> = (
+	export let removeAllItems: (list: Array<Writable<Svg_Item>>) => Array<Writable<Svg_Item>> = (
 		_list,
 	) => [];
 
-	const itemsById = new Map<string, Writable<SvgItem>>();
+	const itemsById = new Map<string, Writable<Svg_Item>>();
 
-	export const handleAction = (action: MuralAction): void => {
+	export const handleAction = (action: Mural_Action): void => {
 		switch (action.type) {
 			case 'addItem': {
 				const item = writable(action.item);
@@ -100,7 +100,7 @@
 		}
 	};
 
-	const act = (action: MuralAction): any => {
+	const act = (action: Mural_Action): any => {
 		dispatch('action', action);
 		handleAction(action);
 	};
@@ -111,18 +111,18 @@
 	// other options
 	export let brushes: BrushType[] = ['pen', 'polyline', 'circle'];
 	export let selectedBrush: BrushType = brushes[0];
-	export let itemSelection: Writable<Writable<SvgItem> | null> = writable(null);
+	export let itemSelection: Writable<Writable<Svg_Item> | null> = writable(null);
 
-	$: if (pointerDown) {
+	$: if (pointer_down) {
 		startDrawing();
-	} else if (pointerDown === false) {
+	} else if (pointer_down === false) {
 		// ignore `undefined`
 		stopDrawing();
 	}
 	let drawing = false;
 	const startDrawing = () => {
 		if (drawing) return;
-		// TODO these probably won't stay simple, but if they do we could bind `pointerDown` directly to `drawing`
+		// TODO these probably won't stay simple, but if they do we could bind `pointer_down` directly to `drawing`
 		drawing = true;
 		if ($itemSelection) return;
 		const item = createItem();
@@ -138,7 +138,8 @@
 		drawing = false;
 	};
 
-	$: if (drawing && pointerX !== undefined && pointerY !== undefined) drawAt(pointerX, pointerY);
+	$: if (drawing && pointer_x !== undefined && pointer_y !== undefined)
+		drawAt(pointer_x, pointer_y);
 	const drawAt = (x: number, y: number) => {
 		const item = selectItemToDraw(items);
 		if (!item) return; // we expect an item but just in case
@@ -158,33 +159,38 @@
 
 	$: selectedItem = $itemSelection;
 	$: selectedPolylinePointsData =
-		$selectedItem?.type === 'polyline' ? toPointsData($selectedItem) : undefined;
+		$selectedItem?.type === 'polyline' ? to_points_data($selectedItem) : undefined;
 </script>
 
-<div class="mural" class:active={pointerDown} style:--width="{width}px" style:--height="{height}px">
+<div
+	class="mural"
+	class:active={pointer_down}
+	style:--width="{width}px"
+	style:--height="{height}px"
+>
 	<div class="content">
 		<Scaled {width} {height} bind:scale>
 			<!-- TODO see `Surface` file comments, its design is fundamentally broken -->
 			<Surface
 				bind:pointing
-				bind:pointerDown
-				bind:pointerX
-				bind:pointerY
+				bind:pointer_down
+				bind:pointer_x
+				bind:pointer_y
 				{scale}
-				cancelOnLeave={false}
+				cancel_on_leave={false}
 			>
-				<!-- TODO maybe extract `MuralContent` or `MuralItemList` or similar -->
-				<!-- TODO maybe should be `SvgItem` instead? and `SvgItems`? -->
+				<!-- TODO maybe extract `MuralContent` or `Mural_Item_List` or similar -->
+				<!-- TODO maybe should be `Svg_Item` instead? and `Svg_Items`? -->
 				<svg>
 					{#each items as item (item)}
-						<MuralItem {item} />
+						<Mural_Item {item} />
 					{/each}
-					{#if pointing && !pointerDown && selectedBrush === 'polyline' && $selectedItem?.type === 'polyline' && selectedPolylinePointsData?.length}
+					{#if pointing && !pointer_down && selectedBrush === 'polyline' && $selectedItem?.type === 'polyline' && selectedPolylinePointsData?.length}
 						<line
 							x1={selectedPolylinePointsData.at(-2)}
 							y1={selectedPolylinePointsData.at(-1)}
-							x2={pointerX}
-							y2={pointerY}
+							x2={pointer_x}
+							y2={pointer_y}
 							stroke={$selectedItem.stroke ?? DEFAULT_POLYLINE_STROKE}
 							stroke-width={$selectedItem.strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
 						/>
@@ -217,7 +223,7 @@
 			clear all
 		</button>
 	</div>
-	<MuralItemList {items} on:action={(e) => act(e.detail)} {itemSelection} />
+	<Mural_Item_List {items} on:action={(e) => act(e.detail)} {itemSelection} />
 </div>
 
 <style>
