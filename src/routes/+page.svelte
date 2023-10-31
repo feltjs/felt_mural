@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {base} from '$app/paths';
-	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
-	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
+	import Library_Header from '@fuz.dev/fuz_library/Library_Header.svelte';
+	import Library_Footer from '@fuz.dev/fuz_library/Library_Footer.svelte';
 	import {parse_package_meta} from '@fuz.dev/fuz_library/package_meta.js';
 
 	import {package_json} from '$lib/package.js';
@@ -15,7 +15,7 @@
 <main class="box width_full">
 	<div class="box width_md">
 		<section class="box">
-			<LibraryHeader {pkg} />
+			<Library_Header {pkg} />
 		</section>
 		<section class="prose">
 			<blockquote class="width_sm text_align_center">
@@ -30,7 +30,7 @@
 		</section>
 		<section class="box"><a class="chip" href="{base}/about">about</a></section>
 		<section>
-			<LibraryFooter {pkg} />
+			<Library_Footer {pkg} />
 		</section>
 	</div>
 </main>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {page} from '$app/stores';
 	import Breadcrumb from '@fuz.dev/fuz_library/Breadcrumb.svelte';
-	import LibraryMenu from '@fuz.dev/fuz_library/LibraryMenu.svelte';
-	import LibraryHeader from '@fuz.dev/fuz_library/LibraryHeader.svelte';
-	import LibraryFooter from '@fuz.dev/fuz_library/LibraryFooter.svelte';
+	import Library_Menu from '@fuz.dev/fuz_library/Library_Menu.svelte';
+	import Library_Header from '@fuz.dev/fuz_library/Library_Header.svelte';
+	import Library_Footer from '@fuz.dev/fuz_library/Library_Footer.svelte';
 	import {set_tomes} from '@fuz.dev/fuz_library/tome.js';
 	import {parse_package_meta} from '@fuz.dev/fuz_library/package_meta.js';
 
@@ -29,19 +29,19 @@
 		<div class="menu_wrapper">
 			<div class="box">
 				<div class="menu width_sm">
-					<LibraryMenu {tomes} />
+					<Library_Menu {tomes} />
 					{#if tomes_related_to_selected}
-						<LibraryMenu tomes={tomes_related_to_selected} let:category>
+						<Library_Menu tomes={tomes_related_to_selected} let:category>
 							<h6>related {category}</h6>
-						</LibraryMenu>
+						</Library_Menu>
 					{/if}
 				</div>
 			</div>
 		</div>
-		<LibraryHeader {pkg} />
+		<Library_Header {pkg} />
 		<slot />
 		<section class="box">
-			<LibraryFooter {pkg} />
+			<Library_Footer {pkg} />
 		</section>
 		<section class="box">
 			<Breadcrumb>💚</Breadcrumb>

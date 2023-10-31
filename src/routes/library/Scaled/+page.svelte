@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {round} from '@grogarden/util/maths.js';
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
-	import TomeDetail from '@fuz.dev/fuz_library/TomeDetail.svelte';
+	import Tome_Detail from '@fuz.dev/fuz_library/Tome_Detail.svelte';
 
 	import Scaled from '$lib/Scaled.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
@@ -32,7 +32,7 @@
 	const EXAMPLE_SIZE = 300;
 </script>
 
-<TomeDetail {tome}>
+<Tome_Detail {tome}>
 	<section>
 		<Code
 			content={`<Scaled
@@ -109,7 +109,7 @@
 			>reset state</button
 		>
 	</form>
-</TomeDetail>
+</Tome_Detail>
 
 <style>
 	.surface-wrapper {

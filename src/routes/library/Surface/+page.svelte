@@ -2,7 +2,7 @@
 	import {writable, type Writable} from 'svelte/store';
 	import {round} from '@grogarden/util/maths.js';
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
-	import TomeDetail from '@fuz.dev/fuz_library/TomeDetail.svelte';
+	import Tome_Detail from '@fuz.dev/fuz_library/Tome_Detail.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
 	import {create_circle, update_item_data, type Svg_Item} from '$lib/item';
@@ -63,7 +63,7 @@
 	};
 </script>
 
-<TomeDetail {tome}>
+<Tome_Detail {tome}>
 	<div class="prose">
 		<div class="box spaced">
 			<blockquote>
@@ -137,7 +137,7 @@
 			</label>
 		</section>
 	</div>
-</TomeDetail>
+</Tome_Detail>
 
 <style>
 	.surface-wrapper {

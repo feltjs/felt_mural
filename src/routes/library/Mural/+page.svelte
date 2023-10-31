@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type {Writable} from 'svelte/store';
 	import {round} from '@grogarden/util/maths.js';
-	import TomeDetail from '@fuz.dev/fuz_library/TomeDetail.svelte';
+	import Tome_Detail from '@fuz.dev/fuz_library/Tome_Detail.svelte';
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
@@ -43,7 +43,7 @@
 	let items: Array<Writable<Svg_Item>> = [];
 </script>
 
-<TomeDetail {tome}>
+<Tome_Detail {tome}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
 		<Mural bind:items {width} {height} bind:scale bind:pointer_down bind:pointer_x bind:pointer_y />
 		<section>
@@ -91,7 +91,7 @@
 			</form>
 		</section>
 	</div>
-</TomeDetail>
+</Tome_Detail>
 
 <style>
 	button {
