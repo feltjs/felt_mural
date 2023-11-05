@@ -4,8 +4,9 @@ import type {Package_Json} from '@grogarden/gro/package_json.js';
 
 export const package_json = {
 	name: '@feltjs/felt_mural',
-	description: 'a proof-of-concept Svelte component for collaborative drawing using Felt',
 	version: '0.5.1',
+	description: 'a proof-of-concept Svelte component for collaborative drawing using Felt',
+	icon: '🎨',
 	public: true,
 	homepage: 'https://mural.felt.dev/',
 	license: 'Unlicense',
