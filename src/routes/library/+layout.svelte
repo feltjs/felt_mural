@@ -8,9 +8,9 @@
 	import {parse_package_meta} from '@fuz.dev/fuz_library/package_meta.js';
 
 	import {tomes} from '$routes/library/tomes.js';
-	import {package_json} from '$lib/package.js';
+	import {package_json, src_json} from '$lib/package.js';
 
-	const pkg = parse_package_meta(package_json.homepage, package_json);
+	const pkg = parse_package_meta(package_json.homepage, package_json, src_json);
 
 	const tomes_by_name = new Map(tomes.map((t) => [t.name, t]));
 	set_tomes(tomes_by_name);
