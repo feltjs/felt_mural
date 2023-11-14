@@ -40,8 +40,8 @@
 			selectedBrush === 'pen' || selectedBrush === 'polyline'
 				? create_polyline()
 				: selectedBrush === 'circle'
-				? create_circle(pointer_x, pointer_y)
-				: null;
+				  ? create_circle(pointer_x, pointer_y)
+				  : null;
 		if (!itemData) return null;
 		return itemData;
 	};
