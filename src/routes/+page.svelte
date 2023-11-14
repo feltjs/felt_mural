@@ -4,7 +4,7 @@
 	import Library_Footer from '@fuz.dev/fuz_library/Library_Footer.svelte';
 	import {parse_package_meta} from '@fuz.dev/fuz_library/package_meta.js';
 
-	import {package_json, src_json} from '$lib/package.js';
+	import {package_json, src_json} from '$routes/package.js';
 
 	// TODO cache in context
 	// TODO SvelteKit warns about this but we put `/static` in `/src` because of what it's saying,
