@@ -212,25 +212,25 @@
 				<input
 					class="item_input"
 					type="range"
-					value={$item.r}
+					value={$item.radius}
 					min={1}
 					max={200}
 					on:input={(e) =>
 						dispatch('action', {
 							type: 'update_item',
 							id: $item.id,
-							data: {r: Number(e.currentTarget.value)},
+							data: {radius: Number(e.currentTarget.value)},
 						})}
 				/>
 				<input
 					class="item_input"
 					type="number"
-					value={$item.r}
+					value={$item.radius}
 					on:input={(e) =>
 						dispatch('action', {
 							type: 'update_item',
 							id: $item.id,
-							data: {r: Number(e.currentTarget.value)},
+							data: {radius: Number(e.currentTarget.value)},
 						})}
 				/>
 			</label>

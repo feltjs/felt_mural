@@ -15,7 +15,7 @@
 
 {#if !hidden}
 	{#if $item.type === 'circle'}
-		{@const {cx, cy, r} = $item}
+		{@const {cx, cy, radius: r} = $item}
 		<circle
 			{cx}
 			{cy}

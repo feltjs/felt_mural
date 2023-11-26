@@ -29,7 +29,7 @@ export interface Svg_Circle_Item extends Svg_Base_Item {
 	type: 'circle';
 	cx: number;
 	cy: number;
-	r: number;
+	radius: number;
 	path_length?: number;
 	// TODO would be nice to have `enable_fill` default to true for 'circle' but still not 'polyline'
 }
@@ -73,10 +73,21 @@ export const DEFAULT_POLYLINE_FILL = 'none';
 export const DEFAULT_POLYLINE_FILL_2 = '#c7beef';
 export const DEFAULT_CIRCLE_FILL = '#75a6d7';
 
-export const create_polyline = (): Svg_Polyline_Item => ({
+export const create_polyline = (
+	fill: string | undefined = undefined,
+	enable_fill: boolean | undefined = undefined,
+	stroke: string | undefined = undefined,
+	stroke_width?: number,
+	opacity?: number,
+): Svg_Polyline_Item => ({
 	id: crypto.randomUUID(),
 	type: 'polyline',
 	points: '',
+	opacity,
+	fill,
+	enable_fill,
+	stroke,
+	stroke_width,
 });
 
 export const create_circle = (
@@ -84,14 +95,21 @@ export const create_circle = (
 	cy = 0,
 	r = 62,
 	fill = DEFAULT_CIRCLE_FILL,
+	enable_fill: boolean | undefined = undefined,
+	stroke: string | undefined = undefined,
+	stroke_width?: number,
+	opacity?: number,
 ): Svg_Circle_Item => ({
 	id: crypto.randomUUID(),
 	type: 'circle',
 	cx,
 	cy,
-	r,
-	enable_fill: true,
+	radius: r,
+	opacity,
 	fill,
+	enable_fill,
+	stroke,
+	stroke_width,
 });
 
 // TODO refactor
