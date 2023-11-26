@@ -118,7 +118,7 @@ export const parsers = {
 	y: (value: number): number => round(value, 1),
 };
 
-export const update_item_data = (item: Writable<Svg_Item>, partial: Update_Item_Data): void =>
+export const update_item_data = (item: Writable<Svg_Item>, partial: Update_Item_Data): void => {
 	item.update(($e) => {
 		const updated = {...$e};
 		for (const key in partial) {
@@ -143,6 +143,7 @@ export const update_item_data = (item: Writable<Svg_Item>, partial: Update_Item_
 		}
 		return updated;
 	});
+};
 
 // TODO where do these belong? should they be more generic than `Mural`?
 export type Mural_Action = Add_Item | Update_Item | Remove_Item | Remove_All_Items;
