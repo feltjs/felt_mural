@@ -35,7 +35,7 @@
 	on:click={() => ($item_selection = item)}
 >
 	<button
-		class="icon_button plain"
+		class="icon_button plain deselectable"
 		class:selected={hidden}
 		on:click={() =>
 			dispatch('action', {
