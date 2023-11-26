@@ -45,7 +45,17 @@
 
 <Tome_Detail {tome}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
-		<Mural bind:items {width} {height} bind:scale bind:pointer_down bind:pointer_x bind:pointer_y />
+		<div class="spaced">
+			<Mural
+				bind:items
+				{width}
+				{height}
+				bind:scale
+				bind:pointer_down
+				bind:pointer_x
+				bind:pointer_y
+			/>
+		</div>
 		<section>
 			<Code
 				content={`<Mural

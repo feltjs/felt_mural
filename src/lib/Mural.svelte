@@ -190,6 +190,27 @@
 		} // else unhandled type
 	};
 
+	const serialize_data = () => {
+		return JSON.stringify(items.map((item) => get(item)));
+	};
+
+	const import_data = () => {
+		// TODO this breaks quickly for lines because the data gets too large
+		const str = prompt('copy and paste this data to save and share your murals:', serialize_data()); // eslint-disable-line no-alert
+		if (!str) return;
+		let parsed: any[]; // TODO type, use Zod
+		try {
+			parsed = JSON.parse(str);
+		} catch (_) {
+			alert('failed to parse the data, it may be too large for this hacky implementation'); // eslint-disable-line no-alert
+			return;
+		}
+		act({type: 'remove_all_items'});
+		for (const item of parsed) {
+			act({type: 'add_item', item});
+		}
+	};
+
 	$: enable_brushes = $item_selection === null;
 
 	$: selected_item = $item_selection;
@@ -250,15 +271,18 @@
 				</button>
 			{/each}
 		</div>
-		<button
-			on:click={() => {
-				$item_selection = null;
-				act({type: 'remove_all_items'});
-			}}
-			disabled={!items.length}
-		>
-			clear all
-		</button>
+		<div class="row">
+			<button on:click={import_data}>import data</button>
+			<button
+				on:click={() => {
+					$item_selection = null;
+					act({type: 'remove_all_items'});
+				}}
+				disabled={!items.length}
+			>
+				clear all
+			</button>
+		</div>
 	</div>
 	<Mural_Item_List {items} on:action={(e) => act(e.detail)} {item_selection} {width} {height} />
 </div>
