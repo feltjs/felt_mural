@@ -1,5 +1,15 @@
 # @feltjs/felt_mural
 
+## 0.6.0
+
+### Minor Changes
+
+- 30465ff: improve UX
+
+### Patch Changes
+
+- 5a6e712: add icon 🎨
+
 ## 0.5.1
 
 ### Patch Changes
