@@ -6,14 +6,16 @@
 
 	// TODO ideally these aren't writable, but then event handlers have to cast
 	export let items: Array<Writable<Svg_Item>>;
-	export let itemSelection: Writable<Writable<Svg_Item> | null>;
+	export let item_selection: Writable<Writable<Svg_Item> | null>;
+	export let width: number;
+	export let height: number;
 
 	$: sorted = items.slice().reverse();
 </script>
 
 <ul class="width_md">
 	{#each sorted as item (item)}
-		<Mural_Item_List_Item {item} {itemSelection} on:action />
+		<Mural_Item_List_Item {item} {item_selection} {width} {height} on:action />
 	{/each}
 </ul>
 

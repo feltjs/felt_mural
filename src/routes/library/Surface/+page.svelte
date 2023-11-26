@@ -47,9 +47,9 @@
 
 	// TODO attach springs to the following items
 
-	$: updateItems(pointer_down, pointer_x, pointer_y);
+	$: update_items(pointer_down, pointer_x, pointer_y);
 
-	const updateItems = (
+	const update_items = (
 		pointer_down: boolean | undefined,
 		pointer_x: number | undefined,
 		pointer_y: number | undefined,

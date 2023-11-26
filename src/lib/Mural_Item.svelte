@@ -10,24 +10,33 @@
 
 	export let item: Readable<Svg_Item>;
 
-	$: ({hidden, pathLength, enableFill, fill, opacity} = $item);
+	$: ({hidden, path_length, enable_fill, fill, opacity, stroke, stroke_width} = $item);
 </script>
 
 {#if !hidden}
 	{#if $item.type === 'circle'}
 		{@const {cx, cy, r} = $item}
-		<circle {cx} {cy} {r} {pathLength} fill={enableFill ? fill || 'red' : 'none'} {opacity} />
+		<circle
+			{cx}
+			{cy}
+			{r}
+			pathLength={path_length}
+			fill={enable_fill ? fill || 'red' : 'none'}
+			{opacity}
+			stroke={stroke ?? DEFAULT_POLYLINE_STROKE}
+			stroke-width={stroke_width ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+		/>
 	{:else if $item.type === 'polyline'}
-		{@const {points, stroke, strokeWidth} = $item}
-		<!-- TODO is `pathLength` useful? -->
+		{@const {points} = $item}
+		<!-- TODO is `path_length` useful? -->
 		<!-- TODO for perfomance, consider making `points` a string and parsing the point array only when needed -->
 		<polyline
 			{points}
-			{pathLength}
-			fill={enableFill ? fill ?? DEFAULT_POLYLINE_FILL : 'none'}
+			pathLength={path_length}
+			fill={enable_fill ? fill ?? DEFAULT_POLYLINE_FILL : 'none'}
 			{opacity}
 			stroke={stroke ?? DEFAULT_POLYLINE_STROKE}
-			stroke-width={strokeWidth ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+			stroke-width={stroke_width ?? DEFAULT_POLYLINE_STROKE_WIDTH}
 		/>
 	{:else}
 		<!-- TODO -->

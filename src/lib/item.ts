@@ -11,18 +11,18 @@ export interface Svg_Base_Item {
 	id: Item_Id;
 	type: string;
 	fill?: string;
-	enableFill?: boolean;
+	enable_fill?: boolean;
 	hidden?: boolean;
 	opacity?: number;
+	stroke?: string;
+	stroke_width?: number;
 }
 
 export interface Svg_Polyline_Item extends Svg_Base_Item {
 	type: 'polyline';
 	points: string;
-	pointsData?: number[];
-	pathLength?: number;
-	stroke?: string;
-	strokeWidth?: number;
+	points_data?: number[];
+	path_length?: number;
 }
 
 export interface Svg_Circle_Item extends Svg_Base_Item {
@@ -30,14 +30,14 @@ export interface Svg_Circle_Item extends Svg_Base_Item {
 	cx: number;
 	cy: number;
 	r: number;
-	pathLength?: number;
-	// TODO would be nice to have `enableFill` default to true for 'circle' but still not 'polyline'
+	path_length?: number;
+	// TODO would be nice to have `enable_fill` default to true for 'circle' but still not 'polyline'
 }
 
 export const parse_item_points_data = (points: string): number[] => {
 	const data: number[] = [];
 	let char: string;
-	let processingX = true;
+	let processing_x = true;
 	let x = '';
 	let y = '';
 	const len = points.length;
@@ -48,13 +48,13 @@ export const parse_item_points_data = (points: string): number[] => {
 				data.push(Number(x), Number(y));
 				x = '';
 				y = '';
-				processingX = true;
+				processing_x = true;
 			} else {
 				x = '';
 				y = '';
 			}
-		} else if (char === ',') processingX = false;
-		else if (processingX) x += char;
+		} else if (char === ',') processing_x = false;
+		else if (processing_x) x += char;
 		else y += char;
 	}
 	if (x && y) {
@@ -64,7 +64,7 @@ export const parse_item_points_data = (points: string): number[] => {
 };
 
 export const to_points_data = (item: Svg_Polyline_Item): number[] =>
-	item.pointsData || (item.pointsData = parse_item_points_data(item.points));
+	item.points_data || (item.points_data = parse_item_points_data(item.points));
 
 // TODO refactor these, maybe remove altogether
 export const DEFAULT_POLYLINE_STROKE = '#666666';
@@ -82,7 +82,7 @@ export const create_polyline = (): Svg_Polyline_Item => ({
 export const create_circle = (
 	cx = 0,
 	cy = 0,
-	r = 25,
+	r = 62,
 	fill = DEFAULT_CIRCLE_FILL,
 ): Svg_Circle_Item => ({
 	id: crypto.randomUUID(),
@@ -90,7 +90,7 @@ export const create_circle = (
 	cx,
 	cy,
 	r,
-	enableFill: true,
+	enable_fill: true,
 	fill,
 });
 
@@ -110,13 +110,13 @@ export const update_item_data = (item: Writable<Svg_Item>, partial: Update_Item_
 			const parsed = parser ? parser(value) : value;
 			if (parsed !== undefined) {
 				// TODO refactor - reuse parsers? maybe return an object with a symbol key to process each key instead of the whole value
-				// pull off all non-standard action-only properties like `appendPoints`,
+				// pull off all non-standard action-only properties like `append_points`,
 				// and generically pass through all others
-				if (key === 'appendPoints') {
+				if (key === 'append_points') {
 					const u = updated as Svg_Polyline_Item;
 					for (let i = 0; i < value.length; i += 2) {
 						u.points += ' ' + value[i] + ',' + value[i + 1];
-						u.pointsData?.push(value[i], value[i + 1]);
+						u.points_data?.push(value[i], value[i + 1]);
 					}
 				} else {
 					(updated as any)[key] = parsed;
@@ -132,22 +132,22 @@ export interface Mural_Base_Action {
 	type: string;
 }
 export interface Add_Item extends Mural_Base_Action {
-	type: 'addItem';
+	type: 'add_item';
 	item: Svg_Item;
 }
 export interface Update_Item extends Mural_Base_Action {
-	type: 'updateItem';
+	type: 'update_item';
 	id: Item_Id;
 	data: Update_Item_Data;
 }
 export interface Remove_Item extends Mural_Base_Action {
-	type: 'removeItem';
+	type: 'remove_item';
 	id: Item_Id;
 }
 export interface Remove_All_Items extends Mural_Base_Action {
-	type: 'removeAllItems';
+	type: 'remove_all_items';
 }
 
 export type Update_Item_Data =
 	| Partial<Exclude<Svg_Item, Svg_Polyline_Item>>
-	| (Partial<Svg_Polyline_Item> & {appendPoints?: number[]});
+	| (Partial<Svg_Polyline_Item> & {append_points?: number[]});
