@@ -36,14 +36,30 @@
 	export let scale: number | undefined = undefined;
 
 	const create_item = (): Svg_Item | null => {
-		const item_data =
+		const item =
 			selected_brush === 'pen' || selected_brush === 'polyline'
-				? create_polyline()
+				? create_polyline(
+						selected_fill,
+						selected_enable_fill,
+						selected_stroke,
+						selected_stroke_width,
+						selected_opacity,
+				  )
 				: selected_brush === 'circle'
-				  ? create_circle(pointer_x, pointer_y)
+				  ? create_circle(
+							pointer_x,
+							pointer_y,
+							selected_radius,
+							selected_fill,
+							selected_enable_fill,
+							selected_stroke,
+							selected_stroke_width,
+							selected_opacity,
+				    )
 				  : null;
-		if (!item_data) return null;
-		return item_data;
+		if (!item) return null;
+		update_selected_values(item);
+		return item;
 	};
 
 	// hooks that can be overridden or externally bound for calling
@@ -108,6 +124,25 @@
 	// TODO where does this belog? might need to add `mural.ts`
 	type Brush_Type = 'pen' | 'polyline' | 'circle';
 
+	// drawing options history
+	export let selected_opacity: number | undefined = undefined;
+	export let selected_fill: string | undefined = undefined;
+	export let selected_enable_fill: boolean | undefined = undefined;
+	export let selected_stroke: string | undefined = undefined;
+	export let selected_stroke_width: number | undefined = undefined;
+	export let selected_radius: number | undefined = undefined;
+
+	const update_selected_values = (item: Svg_Item) => {
+		selected_opacity = item.opacity;
+		selected_fill = item.fill;
+		selected_enable_fill = item.enable_fill;
+		selected_stroke = item.stroke;
+		selected_stroke_width = item.stroke_width;
+		if (item.type === 'circle') {
+			selected_radius = item.radius;
+		}
+	};
+
 	// other options
 	export let brushes: Brush_Type[] = ['pen', 'polyline', 'circle'];
 	export let selected_brush: Brush_Type = brushes[0];
@@ -160,6 +195,8 @@
 	$: selected_item = $item_selection;
 	$: selected_polyline_points_data =
 		$selected_item?.type === 'polyline' ? to_points_data($selected_item) : undefined;
+
+	$: $selected_item && update_selected_values($selected_item);
 </script>
 
 <div
