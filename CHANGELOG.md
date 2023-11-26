@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.7.0
+
+### Minor Changes
+
+- 65938fc: more UX improvements
+
 ## 0.6.0
 
 ### Minor Changes
