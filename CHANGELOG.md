@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.7.1
+
+### Patch Changes
+
+- ef7ece9: fix: deselectable hide icon
+
 ## 0.7.0
 
 ### Minor Changes
