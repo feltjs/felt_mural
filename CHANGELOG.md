@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.7.2
+
+### Patch Changes
+
+- d8642d5: improve sizes
+
 ## 0.7.1
 
 ### Patch Changes
