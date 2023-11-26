@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type {Writable} from 'svelte/store';
 	import {createEventDispatcher} from 'svelte';
+	import {GR_2i, GR_i} from '@grogarden/util/maths.js';
 
 	import {
 		type Svg_Item,
@@ -25,6 +26,9 @@
 	$: final_opacity = opacity ?? 1;
 
 	// TOD clean up the copypasta below
+
+	$: min_dimension = Math.min(width, height);
+	$: max_stroke_width = min_dimension * GR_2i;
 </script>
 
 <li
@@ -46,7 +50,14 @@
 		>{#if hidden}•{:else}👁{/if}</button
 	>
 	<div class="controls">
-		<div class="type">{$item.type}</div>
+		<div class="type">
+			<div class="spaced">{$item.type}</div>
+			{#if $item.type === 'polyline'}
+				<div>
+					{to_points_data($item).length} <small>points</small>
+				</div>
+			{/if}
+		</div>
 		<label>
 			<small class="title">opacity</small>
 			<input
@@ -132,6 +143,9 @@
 				class="item_input"
 				type="range"
 				value={$item.stroke_width ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+				min={0}
+				max={max_stroke_width}
+				step={1}
 				on:input={(e) =>
 					dispatch('action', {
 						type: 'update_item',
@@ -143,6 +157,7 @@
 				class="item_input"
 				type="number"
 				value={$item.stroke_width ?? DEFAULT_POLYLINE_STROKE_WIDTH}
+				step={1}
 				on:input={(e) =>
 					dispatch('action', {
 						type: 'update_item',
@@ -214,7 +229,7 @@
 					type="range"
 					value={$item.radius}
 					min={1}
-					max={200}
+					max={min_dimension * GR_i}
 					on:input={(e) =>
 						dispatch('action', {
 							type: 'update_item',
@@ -234,12 +249,6 @@
 						})}
 				/>
 			</label>
-		{:else if $item.type === 'polyline'}
-			<span class="content">
-				{to_points_data($item).length}
-				<br />
-				<small>points</small>
-			</span>
 		{/if}
 	</div>
 	<button
@@ -259,7 +268,12 @@
 		opacity: var(--faded_2);
 	}
 	.type {
+		padding-top: var(--spacing_xs);
+		padding-left: var(--spacing_xs);
 		width: 8rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 	.item_input {
 		width: 8rem;
@@ -270,10 +284,6 @@
 		flex-wrap: wrap;
 		flex: 1;
 		align-items: flex-start;
-	}
-	.content {
-		padding: 0 var(--spacing_md);
-		flex: 1;
 	}
 	/* TODO play with different checkbox characters ⦿•● (and improve the API - maybe upstream rename to `--checkbox_content`) */
 	input[type='checkbox'] {

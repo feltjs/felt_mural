@@ -1,6 +1,6 @@
 {
   "name": "@feltjs/felt_mural",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "modules": {
     "./item.js": {
       "path": "item.ts",
