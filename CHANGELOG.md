@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.9.1
+
+### Patch Changes
+
+- b333de2: fix layout
+
 ## 0.9.0
 
 ### Minor Changes
