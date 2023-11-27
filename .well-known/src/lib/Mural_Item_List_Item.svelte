@@ -44,6 +44,7 @@
 	on:click={() => ($item_selection = item)}
 >
 	<button
+		type="button"
 		class="icon_button plain deselectable"
 		class:selected={hidden}
 		on:click={() =>
@@ -258,6 +259,7 @@
 		{/if}
 	</div>
 	<button
+		type="button"
 		class="icon_button plain"
 		on:click={() => dispatch('action', {type: 'remove_item', id: $item.id})}>🗙</button
 	>

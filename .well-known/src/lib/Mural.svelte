@@ -275,6 +275,7 @@
 		<fieldset>
 			{#each brushes as brush (brush)}
 				<button
+					type="button"
 					class:selected={enable_brushes && selected_brush === brush}
 					on:click={() => {
 						$item_selection = null;
@@ -296,8 +297,9 @@
 			bind:radius={selected_radius}
 		/>
 		<fieldset>
-			<button on:click={start_importing_data}>import data</button>
+			<button type="button" on:click={start_importing_data}>import data</button>
 			<button
+				type="button"
 				on:click={() => {
 					$item_selection = null;
 					act({type: 'remove_all_items'});
@@ -321,6 +323,7 @@
 			<textarea bind:value={serialized} />
 			<div class="row">
 				<button
+					type="button"
 					disabled={!serialized || serialized === '[]'}
 					on:click={() => serialized && import_data(serialized)}>import data</button
 				>

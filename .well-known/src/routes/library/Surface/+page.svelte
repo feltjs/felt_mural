@@ -113,6 +113,7 @@
 			/>
 
 			<button
+				type="button"
 				on:click={reset}
 				disabled={pointer_down === undefined &&
 					pointer_x === undefined &&
