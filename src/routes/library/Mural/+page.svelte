@@ -45,7 +45,7 @@
 
 <Tome_Detail {tome}>
 	<div class="box width_full" style:--mural_bg={MURAL_BG}>
-		<div class="spaced">
+		<div class="spaced width_full">
 			<Mural
 				bind:items
 				{width}

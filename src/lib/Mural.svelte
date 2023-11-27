@@ -271,8 +271,8 @@
 			</Surface>
 		</Scaled>
 	</div>
-	<div class="controls">
-		<div class="buttons">
+	<form>
+		<fieldset>
 			{#each brushes as brush (brush)}
 				<button
 					class:selected={enable_brushes && selected_brush === brush}
@@ -284,7 +284,7 @@
 					{brush}
 				</button>
 			{/each}
-		</div>
+		</fieldset>
 		<Mural_Controls
 			{width}
 			{height}
@@ -295,7 +295,7 @@
 			bind:stroke_width={selected_stroke_width}
 			bind:radius={selected_radius}
 		/>
-		<div class="buttons">
+		<fieldset>
 			<button on:click={start_importing_data}>import data</button>
 			<button
 				on:click={() => {
@@ -306,8 +306,8 @@
 			>
 				clear all
 			</button>
-		</div>
-	</div>
+		</fieldset>
+	</form>
 	<Mural_Item_List {items} on:action={(e) => act(e.detail)} {item_selection} {width} {height} />
 </div>
 {#if importing_data}
@@ -346,10 +346,10 @@
 		max-width: 100%;
 		height: var(--height);
 	}
-	.controls {
+	form {
 		width: 100%;
-		max-width: var(--width);
 		display: flex;
+		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: flex-start;
@@ -361,7 +361,7 @@
 		height: var(--height);
 		background: var(--mural_bg, transparent);
 	}
-	.buttons {
+	fieldset {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
