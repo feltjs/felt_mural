@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.9.2
+
+### Patch Changes
+
+- 1d2b04d: properly disable import button
+
 ## 0.9.1
 
 ### Patch Changes
