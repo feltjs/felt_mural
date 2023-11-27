@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.9.4
+
+### Patch Changes
+
+- 710d7df: improve data import UX
+
 ## 0.9.3
 
 ### Patch Changes

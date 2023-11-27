@@ -5,7 +5,7 @@ import type {Src_Json} from '@grogarden/gro/src_json.js';
 
 export const package_json = {
 	name: '@feltjs/felt_mural',
-	version: '0.9.3',
+	version: '0.9.4',
 	description: 'a proof-of-concept Svelte component for collaborative drawing using Felt',
 	icon: '🎨',
 	public: true,
@@ -102,7 +102,7 @@ export const package_json = {
 
 export const src_json = {
 	name: '@feltjs/felt_mural',
-	version: '0.9.3',
+	version: '0.9.4',
 	modules: {
 		'./item.js': {
 			path: 'item.ts',
