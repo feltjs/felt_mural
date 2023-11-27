@@ -10,6 +10,8 @@ export type Item_Id = Flavored<string, 'Item'>;
 export interface Svg_Base_Item {
 	id: Item_Id;
 	type: string;
+	x: number;
+	y: number;
 	fill?: string;
 	enable_fill?: boolean;
 	hidden?: boolean;
@@ -27,8 +29,6 @@ export interface Svg_Polyline_Item extends Svg_Base_Item {
 
 export interface Svg_Circle_Item extends Svg_Base_Item {
 	type: 'circle';
-	cx: number;
-	cy: number;
 	radius: number;
 	path_length?: number;
 	// TODO would be nice to have `enable_fill` default to true for 'circle' but still not 'polyline'
@@ -79,10 +79,14 @@ export const create_polyline = (
 	stroke: string | undefined = undefined,
 	stroke_width?: number,
 	opacity?: number,
+	x = 0,
+	y = 0,
 ): Svg_Polyline_Item => ({
 	id: crypto.randomUUID(),
 	type: 'polyline',
 	points: '',
+	x,
+	y,
 	opacity,
 	fill,
 	enable_fill,
@@ -91,8 +95,8 @@ export const create_polyline = (
 });
 
 export const create_circle = (
-	cx = 0,
-	cy = 0,
+	x = 0,
+	y = 0,
 	r = 62,
 	fill = DEFAULT_CIRCLE_FILL,
 	enable_fill: boolean | undefined = undefined,
@@ -102,9 +106,9 @@ export const create_circle = (
 ): Svg_Circle_Item => ({
 	id: crypto.randomUUID(),
 	type: 'circle',
-	cx,
-	cy,
 	radius: r,
+	x,
+	y,
 	opacity,
 	fill,
 	enable_fill,
