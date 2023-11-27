@@ -1,6 +1,6 @@
 {
   "name": "@feltjs/felt_mural",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "a proof-of-concept Svelte component for collaborative drawing using Felt",
   "icon": "🎨",
   "public": true,
