@@ -5,7 +5,7 @@
 	import Tome_Detail from '@fuz.dev/fuz_library/Tome_Detail.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
-	import {create_circle, update_item_data, type Svg_Item} from '$lib/item';
+	import {create_circle, update_item_data, type Svg_Item} from '$lib/item.js';
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
 	import Mural_Item from '$lib/Mural_Item.svelte';

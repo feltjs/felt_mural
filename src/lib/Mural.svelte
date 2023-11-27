@@ -1,10 +1,14 @@
 <script lang="ts">
 	import {get, writable, type Writable} from 'svelte/store';
 	import {createEventDispatcher} from 'svelte';
+	import Copy_To_Clipboard from '@fuz.dev/fuz_library/Copy_To_Clipboard.svelte';
+	import Dialog from '@fuz.dev/fuz_dialog/Dialog.svelte';
+	import Alert from '@fuz.dev/fuz_library/Alert.svelte';
 
 	import Surface from '$lib/Surface.svelte';
 	import Scaled from '$lib/Scaled.svelte';
 	import Mural_Item from '$lib/Mural_Item.svelte';
+	import Mural_Controls from '$lib/Mural_Controls.svelte';
 	import Mural_Item_List from '$lib/Mural_Item_List.svelte';
 	import {
 		create_circle,
@@ -17,7 +21,7 @@
 		type Item_Id,
 		type Svg_Item,
 		type Mural_Action,
-	} from '$lib/item';
+	} from '$lib/item.js';
 
 	const dispatch = createEventDispatcher<{action: Mural_Action}>();
 
@@ -194,21 +198,31 @@
 		return JSON.stringify(items.map((item) => get(item)));
 	};
 
-	const import_data = () => {
-		// TODO this breaks quickly for lines because the data gets too large
-		const str = prompt('copy and paste this data to save and share your murals:', serialize_data()); // eslint-disable-line no-alert
+	let serialized: string | undefined;
+
+	let importing_data = false;
+	let import_error_message: string | undefined;
+
+	const start_importing_data = () => {
+		serialized = serialize_data();
+		importing_data = true;
+	};
+	const import_data = (str: string) => {
 		if (!str) return;
+		import_error_message = undefined;
 		let parsed: any[]; // TODO type, use Zod
 		try {
 			parsed = JSON.parse(str);
 		} catch (_) {
-			alert('failed to parse the data, it may be too large for this hacky implementation'); // eslint-disable-line no-alert
+			// TODO improve message with zod
+			import_error_message = 'failed to parse the data, is there a typo?';
 			return;
 		}
 		act({type: 'remove_all_items'});
 		for (const item of parsed) {
 			act({type: 'add_item', item});
 		}
+		importing_data = false;
 	};
 
 	$: enable_brushes = $item_selection === null;
@@ -258,7 +272,7 @@
 		</Scaled>
 	</div>
 	<div class="controls">
-		<div class="row">
+		<div class="buttons">
 			{#each brushes as brush (brush)}
 				<button
 					class:selected={enable_brushes && selected_brush === brush}
@@ -271,8 +285,18 @@
 				</button>
 			{/each}
 		</div>
-		<div class="row">
-			<button on:click={import_data}>import data</button>
+		<Mural_Controls
+			{width}
+			{height}
+			bind:opacity={selected_opacity}
+			bind:fill={selected_fill}
+			bind:enable_fill={selected_enable_fill}
+			bind:stroke={selected_stroke}
+			bind:stroke_width={selected_stroke_width}
+			bind:radius={selected_radius}
+		/>
+		<div class="buttons">
+			<button on:click={start_importing_data}>import data</button>
 			<button
 				on:click={() => {
 					$item_selection = null;
@@ -286,6 +310,27 @@
 	</div>
 	<Mural_Item_List {items} on:action={(e) => act(e.detail)} {item_selection} {width} {height} />
 </div>
+{#if importing_data}
+	<Dialog
+		on:close={() => {
+			importing_data = false;
+		}}
+	>
+		<div class="pane padded_md prose">
+			<p>Copy and paste this data to save and share your murals:</p>
+			<textarea bind:value={serialized} />
+			<div class="row">
+				<button on:click={() => serialized && import_data(serialized)}>import data</button>
+				{#if serialized}
+					<Copy_To_Clipboard text={serialized} />
+				{/if}
+			</div>
+			{#if import_error_message}
+				<Alert status="error">{import_error_message}</Alert>
+			{/if}
+		</div>
+	</Dialog>
+{/if}
 
 <style>
 	.mural {
@@ -307,7 +352,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-start;
 		padding-top: var(--spacing_md);
 	}
 	svg {
@@ -315,5 +360,10 @@
 		width: var(--width);
 		height: var(--height);
 		background: var(--mural_bg, transparent);
+	}
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
 	}
 </style>

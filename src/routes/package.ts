@@ -62,6 +62,11 @@ export const package_json = {
 	},
 	exports: {
 		'./item.js': {default: './dist/item.js', types: './dist/item.d.ts'},
+		'./Mural_Controls.svelte': {
+			svelte: './dist/Mural_Controls.svelte',
+			default: './dist/Mural_Controls.svelte',
+			types: './dist/Mural_Controls.svelte.d.ts',
+		},
 		'./Mural_Item_List_Item.svelte': {
 			svelte: './dist/Mural_Item_List_Item.svelte',
 			default: './dist/Mural_Item_List_Item.svelte',
@@ -127,6 +132,7 @@ export const src_json = {
 				{name: 'Update_Item_Data', kind: 'type'},
 			],
 		},
+		'./Mural_Controls.svelte': {path: 'Mural_Controls.svelte', declarations: []},
 		'./Mural_Item_List_Item.svelte': {path: 'Mural_Item_List_Item.svelte', declarations: []},
 		'./Mural_Item_List.svelte': {path: 'Mural_Item_List.svelte', declarations: []},
 		'./Mural_Item.svelte': {path: 'Mural_Item.svelte', declarations: []},

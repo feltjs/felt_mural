@@ -82,6 +82,11 @@
       "default": "./dist/item.js",
       "types": "./dist/item.d.ts"
     },
+    "./Mural_Controls.svelte": {
+      "svelte": "./dist/Mural_Controls.svelte",
+      "default": "./dist/Mural_Controls.svelte",
+      "types": "./dist/Mural_Controls.svelte.d.ts"
+    },
     "./Mural_Item_List_Item.svelte": {
       "svelte": "./dist/Mural_Item_List_Item.svelte",
       "default": "./dist/Mural_Item_List_Item.svelte",

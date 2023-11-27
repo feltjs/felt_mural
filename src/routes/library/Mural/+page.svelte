@@ -5,7 +5,7 @@
 	import Code from '@fuz.dev/fuz_code/Code.svelte';
 	import {get_tome} from '@fuz.dev/fuz_library/tome.js';
 
-	import type {Svg_Item} from '$lib/item';
+	import type {Svg_Item} from '$lib/item.js';
 	import Mural from '$lib/Mural.svelte';
 
 	// TODO fix responsive width
