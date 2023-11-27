@@ -320,8 +320,11 @@
 			<p>Copy and paste this data to save and share your murals:</p>
 			<textarea bind:value={serialized} />
 			<div class="row">
-				<button on:click={() => serialized && import_data(serialized)}>import data</button>
-				{#if serialized}
+				<button
+					disabled={!serialized || serialized === '[]'}
+					on:click={() => serialized && import_data(serialized)}>import data</button
+				>
+				{#if serialized && serialized !== '[]'}
 					<Copy_To_Clipboard text={serialized} />
 				{/if}
 			</div>
