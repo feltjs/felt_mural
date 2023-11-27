@@ -1,6 +1,6 @@
 {
   "name": "@feltjs/felt_mural",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "modules": {
     "./item.js": {
       "path": "item.ts",
@@ -98,6 +98,10 @@
           "kind": "type"
         }
       ]
+    },
+    "./Mural_Controls.svelte": {
+      "path": "Mural_Controls.svelte",
+      "declarations": []
     },
     "./Mural_Item_List_Item.svelte": {
       "path": "Mural_Item_List_Item.svelte",

@@ -6,7 +6,7 @@
 		DEFAULT_POLYLINE_FILL,
 		type Svg_Item,
 		DEFAULT_POLYLINE_STROKE,
-	} from '$lib/item';
+	} from '$lib/item.js';
 
 	export let item: Readable<Svg_Item>;
 

@@ -10,7 +10,7 @@
 		DEFAULT_POLYLINE_FILL_2,
 		type Mural_Action,
 		to_points_data,
-	} from '$lib/item';
+	} from '$lib/item.js';
 
 	export let item: Writable<Svg_Item>;
 	export let item_selection: Writable<Writable<Svg_Item> | null>;
@@ -28,7 +28,7 @@
 	// TOD clean up the copypasta below
 
 	$: min_dimension = Math.min(width, height);
-	$: max_stroke_width = min_dimension * GR_2i;
+	$: max_stroke_width = Math.round(min_dimension * GR_2i);
 </script>
 
 <li
@@ -229,7 +229,8 @@
 					type="range"
 					value={$item.radius}
 					min={1}
-					max={min_dimension * GR_i}
+					max={Math.round(min_dimension * GR_i)}
+					step={1}
 					on:input={(e) =>
 						dispatch('action', {
 							type: 'update_item',
