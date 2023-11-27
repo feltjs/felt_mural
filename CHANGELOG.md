@@ -1,5 +1,11 @@
 # @feltjs/felt_mural
 
+## 0.9.3
+
+### Patch Changes
+
+- 6988865: fix buttons
+
 ## 0.9.2
 
 ### Patch Changes
