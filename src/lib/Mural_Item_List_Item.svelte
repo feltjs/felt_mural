@@ -29,6 +29,11 @@
 
 	$: min_dimension = Math.min(width, height);
 	$: max_stroke_width = Math.round(min_dimension * GR_2i);
+
+	$: min_x = $item.type === 'circle' ? 0 : width / -2;
+	$: max_x = $item.type === 'circle' ? width : width / 2;
+	$: min_y = $item.type === 'circle' ? 0 : height / -2;
+	$: max_y = $item.type === 'circle' ? height : height / 2;
 </script>
 
 <li
@@ -166,62 +171,62 @@
 					})}
 			/>
 		</label>
+		<label title="modify the {$item.type}'s x position">
+			<small class="title">x</small>
+			<input
+				class="item_input"
+				type="range"
+				value={$item.x}
+				min={min_x}
+				max={max_x}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'update_item',
+						id: $item.id,
+						data: {x: Number(e.currentTarget.value)},
+					})}
+			/>
+			<input
+				class="item_input"
+				type="number"
+				value={$item.x}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'update_item',
+						id: $item.id,
+						data: {x: Number(e.currentTarget.value)},
+					})}
+			/>
+		</label>
+		<label title="modify the {$item.type}'s y position">
+			<small class="title">y</small>
+			<input
+				class="item_input"
+				type="range"
+				value={$item.y}
+				min={min_y}
+				max={max_y}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'update_item',
+						id: $item.id,
+						data: {y: Number(e.currentTarget.value)},
+					})}
+			/>
+			<input
+				class="item_input"
+				type="number"
+				value={$item.y}
+				on:input={(e) =>
+					dispatch('action', {
+						type: 'update_item',
+						id: $item.id,
+						data: {y: Number(e.currentTarget.value)},
+					})}
+			/>
+		</label>
 		<!-- TODO `path_length` input (maybe a range?) -->
 		{#if $item.type === 'circle'}
-			<label title="modify the {$item.type}'s x position">
-				<small class="title">x</small>
-				<input
-					class="item_input"
-					type="range"
-					value={$item.cx}
-					min={0}
-					max={width}
-					on:input={(e) =>
-						dispatch('action', {
-							type: 'update_item',
-							id: $item.id,
-							data: {cx: Number(e.currentTarget.value)},
-						})}
-				/>
-				<input
-					class="item_input"
-					type="number"
-					value={$item.cx}
-					on:input={(e) =>
-						dispatch('action', {
-							type: 'update_item',
-							id: $item.id,
-							data: {cx: Number(e.currentTarget.value)},
-						})}
-				/>
-			</label>
-			<label title="modify the {$item.type}'s y position">
-				<small class="title">y</small>
-				<input
-					class="item_input"
-					type="range"
-					value={$item.cy}
-					min={0}
-					max={height}
-					on:input={(e) =>
-						dispatch('action', {
-							type: 'update_item',
-							id: $item.id,
-							data: {cy: Number(e.currentTarget.value)},
-						})}
-				/>
-				<input
-					class="item_input"
-					type="number"
-					value={$item.cy}
-					on:input={(e) =>
-						dispatch('action', {
-							type: 'update_item',
-							id: $item.id,
-							data: {cy: Number(e.currentTarget.value)},
-						})}
-				/>
-			</label>
 			<label title="modify the {$item.type}'s radius">
 				<small class="title">radius</small>
 				<input

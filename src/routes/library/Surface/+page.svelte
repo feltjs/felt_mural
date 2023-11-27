@@ -56,8 +56,8 @@
 	) => {
 		const item = items[0];
 		update_item_data(item, {
-			cx: pointer_x,
-			cy: pointer_y,
+			x: pointer_x,
+			y: pointer_y,
 			fill: pointer_down ? '#397fc6' : '#7f7166',
 		});
 	};

@@ -15,11 +15,10 @@
 
 {#if !hidden}
 	{#if $item.type === 'circle'}
-		{@const {cx, cy, radius: r} = $item}
 		<circle
-			{cx}
-			{cy}
-			{r}
+			cx={$item.x}
+			cy={$item.y}
+			r={$item.radius}
 			pathLength={path_length}
 			fill={enable_fill ? fill || 'red' : 'none'}
 			{opacity}
@@ -32,6 +31,7 @@
 		<!-- TODO for perfomance, consider making `points` a string and parsing the point array only when needed -->
 		<polyline
 			{points}
+			transform={$item.x || $item.y ? `translate(${$item.x} ${$item.y})` : undefined}
 			pathLength={path_length}
 			fill={enable_fill ? fill ?? DEFAULT_POLYLINE_FILL : 'none'}
 			{opacity}
