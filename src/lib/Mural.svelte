@@ -199,6 +199,7 @@
 	};
 
 	let serialized: string | undefined;
+	let serialized_el: HTMLTextAreaElement | undefined;
 
 	let importing_data = false;
 	let import_error_message: string | undefined;
@@ -216,6 +217,10 @@
 		} catch (_) {
 			// TODO improve message with zod
 			import_error_message = 'failed to parse the data, is there a typo?';
+			if (serialized_el) {
+				serialized_el.focus();
+				serialized_el.select();
+			}
 			return;
 		}
 		act({type: 'remove_all_items'});
@@ -316,19 +321,30 @@
 	<Dialog
 		on:close={() => {
 			importing_data = false;
+			import_error_message = undefined;
 		}}
 	>
 		<div class="pane padded_md prose">
 			<p>Copy and paste this data to save and share your murals:</p>
-			<textarea bind:value={serialized} />
+			<textarea
+				bind:this={serialized_el}
+				bind:value={serialized}
+				on:focus={(e) => {
+					e.currentTarget.select();
+				}}
+			/>
 			<div class="row">
 				<button
 					type="button"
+					class="spaced_hz"
 					disabled={!serialized || serialized === '[]'}
 					on:click={() => serialized && import_data(serialized)}>import data</button
 				>
 				{#if serialized && serialized !== '[]'}
-					<Copy_To_Clipboard text={serialized} />
+					<div class="spaced_hz">
+						<Copy_To_Clipboard text={serialized} />
+					</div>
+					{serialized.length} characters
 				{/if}
 			</div>
 			{#if import_error_message}
