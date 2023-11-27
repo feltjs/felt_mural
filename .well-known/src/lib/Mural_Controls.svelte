@@ -95,7 +95,7 @@
 	}
 	/* TODO play with different checkbox characters ⦿•● (and improve the API - maybe upstream rename to `--checkbox_content`) */
 	input[type='checkbox'] {
-		--content: '•';
+		--content: '●';
 	}
 	label {
 		padding-bottom: var(--spacing_xs);

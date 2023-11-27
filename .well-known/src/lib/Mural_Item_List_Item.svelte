@@ -53,7 +53,7 @@
 				id: $item.id,
 				data: {hidden: !$item.hidden},
 			})}
-		>{#if hidden}•{:else}👁{/if}</button
+		>{#if hidden}●{:else}👁{/if}</button
 	>
 	<div class="controls">
 		<div class="type">
@@ -295,7 +295,7 @@
 	}
 	/* TODO play with different checkbox characters ⦿•● (and improve the API - maybe upstream rename to `--checkbox_content`) */
 	input[type='checkbox'] {
-		--content: '•';
+		--content: '●';
 	}
 	label {
 		padding-bottom: var(--spacing_xs);
