@@ -48,9 +48,9 @@
 						selected_stroke,
 						selected_stroke_width,
 						selected_opacity,
-				  )
+					)
 				: selected_brush === 'circle'
-				  ? create_circle(
+					? create_circle(
 							pointer_x,
 							pointer_y,
 							selected_radius,
@@ -59,8 +59,8 @@
 							selected_stroke,
 							selected_stroke_width,
 							selected_opacity,
-				    )
-				  : null;
+						)
+					: null;
 		if (!item) return null;
 		update_selected_values(item);
 		return item;
